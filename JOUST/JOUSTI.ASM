@@ -1,22 +1,22 @@
-	NOGEN
-	NCLIST
-	BLIST
-*
-*	COLISION OFFSET FOR DETECTING END OF POINTERS & NO COLISION POINTERS
-*
+;	NOGEN
+;	NCLIST
+;	BLIST
+;*
+;*	COLISION OFFSET FOR DETECTING END OF POINTERS & NO COLISION POINTERS
+;*
 COFF	EQU	$0200
 DMAFIX	EQU	$0404
-*
-*	POSITIVE Y-DIRECTION OFFSET MACRO
-*
+;*
+;*	POSITIVE Y-DIRECTION OFFSET MACRO
+;*
 POSOFF	MACRO	COLISN,XOFF,YOFF,SRC
 	 FDB	COLISN,XOFF*256+256-YOFF,SRC
 	ENDM
-*
-*	IMAGES FOR JOUST
-*
+;*
+;*	IMAGES FOR JOUST
+;*
 	ORG	$0000
-PLAYER	EQU	0	FOR DEBUGGING PURPOSES
+PLAYER	EQU	0	;FOR DEBUGGING PURPOSES
 	FDB	CLIF1L
 	FDB	CLIF1R
 	FDB	CLIF2
@@ -24,35 +24,35 @@ PLAYER	EQU	0	FOR DEBUGGING PURPOSES
 	FDB	CLIF3L
 	FDB	CLIF3R
 	FDB	CLIF4
-	FDB	CLIF5	BOTTOM CLIFF
-	FDB	TRANS1	TRANSPORTER #1
-	FDB	TRANS2	TRANSPORTER #2
-	FDB	TRANS3	TRANSPORTER #3
-	FDB	TRANS4	TRANSPORTER #4
+	FDB	CLIF5	;BOTTOM CLIFF
+	FDB	TRANS1	;TRANSPORTER #1
+	FDB	TRANS2	;TRANSPORTER #2
+	FDB	TRANS3	;TRANSPORTER #3
+	FDB	TRANS4	;TRANSPORTER #4
 	FDB	OSTRICH
 	FDB	BUZARD
-	FDB	STORK	TOP AREA BIRD
-	FDB	PLYR1	THE LEFT & RIGH PLAYER #1 IMAGE
-	FDB	PLYR2	THE LEFT & RIGH PLAYER #2 IMAGE
-	FDB	PLYR3	THE LEFT & RIGH PLAYER #3 IMAGE
-	FDB	PLYR4	THE LEFT & RIGH PLAYER #4 IMAGE
-	FDB	PLYR5	THE LEFT & RIGH PLAYER #5 IMAGE
-	FDB	EGGI	EGG STILLS & HATCHING
-	FDB	ILAVAT	LAVA TROLL HANDS
-	FDB	IFLAME	LAVA FLAMES
-	FDB	POOF1	PLAYER POOF DEATH
-	FDB	POOF2	PLAYER POOF DEATH
-	FDB	POOF3	PLAYER POOF DEATH
-	FDB	IPTERO	PTERODACTYL LEFT/RIGHT 3 FRAME ANAIMATION
-	FDB	COMCL5	THE COMPACTED CLIFF5
-	FDB	ASH1R	A DISOULVING PTERODACTYL
-	FDB	ASH1L	A DISOULVING PTERODACTYL 
-*	
-*	CLIFF1L
-* 0145 START ADDRESS
-* 17 BY 7 BYTES
-CLIF1L	FDB	CCLF1L,CSRC1L,$0145,$1107!XDMAFIX
-	FDB	       CSRC1L,$0145,$1106!XDMAFIX
+	FDB	STORK	;TOP AREA BIRD
+	FDB	PLYR1	;THE LEFT & RIGH PLAYER #1 IMAGE
+	FDB	PLYR2	;THE LEFT & RIGH PLAYER #2 IMAGE
+	FDB	PLYR3	;THE LEFT & RIGH PLAYER #3 IMAGE
+	FDB	PLYR4	;THE LEFT & RIGH PLAYER #4 IMAGE
+	FDB	PLYR5	;THE LEFT & RIGH PLAYER #5 IMAGE
+	FDB	EGGI	;EGG STILLS & HATCHING
+	FDB	ILAVAT	;LAVA TROLL HANDS
+	FDB	IFLAME	;LAVA FLAMES
+	FDB	POOF1	;PLAYER POOF DEATH
+	FDB	POOF2	;PLAYER POOF DEATH
+	FDB	POOF3	;PLAYER POOF DEATH
+	FDB	IPTERO	;PTERODACTYL LEFT/RIGHT 3 FRAME ANAIMATION
+	FDB	COMCL5	;THE COMPACTED CLIFF5
+	FDB	ASH1R	;A DISOULVING PTERODACTYL
+	FDB	ASH1L	;A DISOULVING PTERODACTYL 
+;*	
+;*	CLIFF1L
+;* 0145 START ADDRESS
+;* 17 BY 7 BYTES
+CLIF1L	FDB	CCLF1L,CSRC1L,$0145,$1107!DMAFIX				;;Fixme was: !XDMAFIX
+	FDB	       CSRC1L,$0145,$1106!DMAFIX				;;Fixme was: !XDMAFIX
 CSRC1L
 	FCB $AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$A0
 	FCB $88,$8C,$CC,$CA,$AE,$EC,$CC,$CC,$88,$8C,$CC,$AA,$CC,$CC,$CC,$CC,$C0
@@ -61,22 +61,22 @@ CSRC1L
 	FCB $EE,$EE,$EE,$EE,$EE,$8E,$EE,$C8,$8C,$CE,$EE,$EE,$E8,$00,$00,$00,$00
 	FCB $EE,$EE,$EE,$EE,$EE,$EC,$EE,$EE,$88,$EE,$EE,$EE,$E0,$00,$00,$00,$00
 	FCB $00,$00,$00,$00,$00,$00,$00,$00,$8E,$EE,$EE,$E0,$00,$00,$00,$00,$00
-*
-CCLF1L	FDB	10+COFF,35+32+COFF	CLIF1L STARTS -9 TO 33 PIXEL (INCLUDING 
-ZERO)
+;*
+CCLF1L	FDB	10+COFF,35+32+COFF	;CLIF1L STARTS -9 TO 33 PIXEL (INCLUDING 
+;ZERO)
 	FDB	10+COFF,35+32+COFF
 	FDB	10+COFF,32+32+COFF
 	FDB	10+COFF,30+32+COFF
 	FDB	10+COFF,28+32+COFF
 	FDB	10+COFF,27+32+COFF
 	FDB	19+32+COFF,25+32+COFF
-	FDB	$8100,$8100		TERMINATING POINTER
-*
-*	CLIFF1R
-* $7E45
-* 18 BY 7 BYTES
-CLIF1R	FDB	CCLF1R,CSRC1R,$7E45,$1807!XDMAFIX		OLD X FC
-	FDB	       CSRC1R,$7E45,$1806!XDMAFIX
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
+;*	CLIFF1R
+;* $7E45
+;* 18 BY 7 BYTES
+CLIF1R	FDB	CCLF1R,CSRC1R,$7E45,$1807!DMAFIX		;OLD X FC	;;Fixme was: !XDMAFIX
+	FDB	       CSRC1R,$7E45,$1806!DMAFIX                                ;;Fixme was: !XDMAFIX
 CSRC1R
  FDB $AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAA0
  FDB $CCCC,$C888,$88CC,$888A,$CC88,$88CC,$8CCC,$CAAC,$CCAA,$AA88,$CC88,$8AA0
@@ -85,8 +85,8 @@ CSRC1R
  FDB $0000,$0000,$CCC8,$888E,$EEEE,$EEEE,$EEEE,$E8EE,$EEE8,$8EEE,$EC8E,$EEE0
  FDB $0000,$0000,$888E,$EEEE,$EEEE,$EEEE,$EEEE,$EEEE,$EEE8,$CEEE,$E8EE,$EEE0
  FDB $0000,$0000,$0000,$0000,$0000,$0000,$0000,$0EEE,$EE88,$0000,$08EE,$EEE0
-*
-CCLF1R	FDB	1+COFF,36+32+COFF		CLIF1R GOES 10 MORE PIXELS OFF S
+;*
+CCLF1R	FDB	1+COFF,36+32+COFF		;CLIF1R GOES 10 MORE PIXELS OFF S
 CREEN
 	FDB	1+COFF,36+32+COFF
 	FDB	4+COFF,36+32+COFF
@@ -94,17 +94,17 @@ CREEN
 	FDB	9+COFF,36+32+COFF
 	FDB	9+COFF,36+32+COFF
 	FDB	30+COFF,36+32+COFF
-	FDB	$8100,$8100		TERMINATING POINTER
-*
-*	AND THE EVER POPULAR COPYRIGHT MESSAGE
-*
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
+;*	AND THE EVER POPULAR COPYRIGHT MESSAGE
+;*
 	FCC	'JOUST (C) 1982 WILLIAMS ELECTRONICS INC.'
-*
-*	CLIFF2
-* $2B51
-* 44 BY 9 BYTES
-CLIF2	FDB	CCLF2,CSRC2,$2B51,$2C09!XDMAFIX	OLD X $56
-	FDB	      CSRC2,$2B51,$2C08!XDMAFIX
+;*
+;*	CLIFF2
+;* $2B51
+;* 44 BY 9 BYTES
+CLIF2	FDB	CCLF2,CSRC2,$2B51,$2C09!DMAFIX	;OLD X $56			;;Fixme was: !XDMAFIX
+	FDB	      CSRC2,$2B51,$2C08!DMAFIX                                  ;;Fixme was: !XDMAFIX
 CSRC2
 	FCB	 $AA,$AA,$AA,$AA,$AA,$AA,$AC,$CC,$C8,$EE,$DD
 	FCB	$DD,$DD,$DD,$DD,$DD,$DD,$DD,$DD,$DD,$DD,$DD
@@ -142,7 +142,7 @@ CSRC2
 	FCB	$00,$8E,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
 	FCB	$88,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-*
+;*
 CCLF2	FDB	1+COFF,88+COFF
 	FDB	1+COFF,88+COFF
 	FDB	4+COFF,85+COFF
@@ -152,13 +152,13 @@ CCLF2	FDB	1+COFF,88+COFF
 	FDB	7+COFF,82+COFF
 	FDB	13+COFF,67+COFF
 	FDB	25+COFF,46+COFF
-	FDB	$8100,$8100		TERMINATING POINTER
-*
-*	CLIFF3L
-* 018A
-* 32 BY 8 BYTES
-CLIF3L	FDB	CCLF3L,CSRC3L,$018A,$2008!XDMAFIX
-	FDB	       CSRC3L,$018A,$2007!XDMAFIX
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
+;*	CLIFF3L
+;* 018A
+;* 32 BY 8 BYTES
+CLIF3L	FDB	CCLF3L,CSRC3L,$018A,$2008!DMAFIX				;;Fixme was: !XDMAFIX
+	FDB	       CSRC3L,$018A,$2007!DMAFIX                                ;;Fixme was: !XDMAFIX
 CSRC3L
 	FCB	$0A,$AA,$AA,$AA,$AA,$AA,$EE,$DD,$DD,$DD,$DD,$DD,$DD,$DD,$DD,$DD
 	FCB $DD,$DD,$DD,$DD,$DD,$EA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA
@@ -176,7 +176,7 @@ CSRC3L
 	FCB $EE,$EE,$EE,$EE,$EE,$C8,$8E,$EE,$EE,$EE,$EE,$EE,$EE,$00,$00,$00
 	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 	FCB $00,$00,$00,$00,$08,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$00,$00,$00
-*
+;*
 CCLF3L	FDB	1+COFF,66+32+COFF
 	FDB	1+COFF,66+32+COFF
 	FDB	1+COFF,63+32+COFF
@@ -185,13 +185,13 @@ CCLF3L	FDB	1+COFF,66+32+COFF
 	FDB	15+32+COFF,59+32+COFF
 	FDB	19+32+COFF,60+32+COFF
 	FDB	44+32+COFF,60+32+COFF
-	FDB	$8100,$8100		TERMINATING POINTER
-*
-*	CLIFF3U
-* $6581
-* 43 BY 16 BYTES
-CLIF3U	FDB	CCLF3R,CSRC3U,$6581,$1D0B!XDMAFIX		OLD X CA
-	FDB	       CSRC3U,$6581,$1D0B!XDMAFIX
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
+;*	CLIFF3U
+;* $6581
+;* 43 BY 16 BYTES
+CLIF3U	FDB	CCLF3R,CSRC3U,$6581,$1D0B!DMAFIX		;OLD X CA	;;Fixme was: !XDMAFIX
+	FDB	       CSRC3U,$6581,$1D0B!DMAFIX                                ;;Fixme was: !XDMAFIX
 CSRC3U
 	FCB	$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$EE,$DD,$DD,$DD,$DD
 	FCB	$DD,$DD,$DD,$DD,$DD,$DD,$DD,$DD,$DD,$DD,$EA,$AA,$AA,$AA
@@ -215,12 +215,12 @@ CSRC3U
 	FCB	$EE,$EE,$EE,$EE,$EC,$88,$EE,$EE,$E0,$00,$00,$00,$00,$00
 	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 	FCB	$00,$00,$00,$00,$08,$EE,$EE,$EE,$00,$00,$00,$00,$00,$00
-*
-*	CLIFF3R
-* $6581 (CONTINUED)
-* 43 BY 16 BYTES
-CLIF3R	FDB	CCLF3R,CSRC3R,$7F8A,$1807!XDMAFIX		OLD X CA
-	FDB	       CSRC3R,$7F8A,$1806!XDMAFIX
+;*
+;*	CLIFF3R
+;* $6581 (CONTINUED)
+;* 43 BY 16 BYTES
+CLIF3R	FDB	CCLF3R,CSRC3R,$7F8A,$1807!DMAFIX		;OLD X CA	;;Fixme was: !XDMAFIX
+	FDB	       CSRC3R,$7F8A,$1806!DMAFIX                                ;;Fixme was: !XDMAFIX
 CSRC3R
  FDB $00AA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA,$AAAA
  FDB $00CC,$C88C,$CC88,$8CAC,$CA8C,$8888,$AAAA,$AEEC,$C888,$A888,$8888,$8888
@@ -229,7 +229,7 @@ CSRC3R
  FDB $0000,$00EE,$88C8,$8EEE,$EEE8,$EEEE,$CEEE,$EE88,$8EEE,$EEEE,$EEEE,$EEEE
  FDB $0000,$000C,$CCEE,$EEEE,$EEEE,$8CEE,$E800,$0000,$00EE,$EE00,$0000,$0000
  FDB $0000,$000C,$8EEE,$EEEE,$EEEE,$E800,$0000,$0000,$0000,$0000,$0000,$0000
-*
+;*
 CCLF3R	FDB	1+COFF,58+COFF
 	FDB	1+COFF,57+COFF
 	FDB	2+COFF,56+COFF
@@ -246,13 +246,13 @@ CCLF3R	FDB	1+COFF,58+COFF
 	FDB	58+COFF,86+32+COFF
 	FDB	61+COFF,78+COFF
 	FDB	61+COFF,74+COFF
-	FDB	$8100,$8100		TERMINATING POINTER
-*
-*	CLIFF4
-* $35A3
-* 32 BY 8 BYTES
-CLIF4	FDB	CCLF4,CSRC4,$35A3,$2008!XDMAFIX		OLD X 6A
-	FDB	      CSRC4,$35A3,$2007!XDMAFIX
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
+;*	CLIFF4
+;* $35A3
+;* 32 BY 8 BYTES
+CLIF4	FDB	CCLF4,CSRC4,$35A3,$2008!DMAFIX		;OLD X 6A		;;Fixme was: !XDMAFIX
+	FDB	      CSRC4,$35A3,$2007!DMAFIX                                  ;;Fixme was: !XDMAFIX
 CSRC4
 	FCB	$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA
 	FCB $AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA
@@ -270,7 +270,7 @@ CSRC4
 	FCB $EE,$EE,$EE,$88,$88,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$0E,$EE,$EE,$EE
 	FCB $EE,$EE,$EE,$88,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-*
+;*
 CCLF4	FDB	1+COFF,64+COFF
 	FDB	1+COFF,64+COFF
 	FDB	4+COFF,64+COFF
@@ -279,15 +279,15 @@ CCLF4	FDB	1+COFF,64+COFF
 	FDB	9+COFF,56+COFF
 	FDB	16+COFF,42+COFF
 	FDB	26+COFF,40+COFF
-	FDB	$8100,$8100		TERMINATING POINTER
-*
-*	CLIFF5
-* $1BD3
-* 93 BY 33
-CLIF5	FDB	CCLF5,CSRC5,$1BD3,$5D02!XDMAFIX		OLD X 36
-	FDB	      CSRC5,$1BD3,$5D02!XDMAFIX		TOP
-	FDB	      CSRC5L,$1BD3,$080D!XDMAFIX	LEFT SIDE
-	FDB	      CSRC5R,$70D3,$080D!XDMAFIX	RIGHT SIDE
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
+;*	CLIFF5
+;* $1BD3
+;* 93 BY 33
+CLIF5	FDB	CCLF5,CSRC5,$1BD3,$5D02!DMAFIX		;OLD X 36		;;Fixme was: !XDMAFIX
+	FDB	      CSRC5,$1BD3,$5D02!DMAFIX		;TOP                    ;;Fixme was: !XDMAFIX
+	FDB	      CSRC5L,$1BD3,$080D!DMAFIX		;LEFT SIDE		;;Fixme was: !XDMAFIX
+	FDB	      CSRC5R,$70D3,$080D!DMAFIX		;RIGHT SIDE             ;;Fixme was: !XDMAFIX
 CSRC5R
 	FCB	$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA
 	FCB	$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA
@@ -302,7 +302,7 @@ CSRC5R
 	FCB	$88,$EE,$00,$00,$00,$00,$00,$00
 	FCB	$8E,$E0,$00,$00,$00,$00,$00,$00
 	FCB	$80,$00,$00,$00,$00,$00,$00,$00
-*
+;*
 CSRC5L
 	FCB	$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA
 	FCB	$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA
@@ -318,7 +318,7 @@ CSRC5L
 	FCB	$00,$00,$00,$00,$00,$00,$00,$EE
 	FCB	$00,$00,$00,$00,$00,$00,$00,$0E
 	FCB	$00,$00,$00,$00,$00,$00,$00,$0E
-*
+;*
 CSRC5
 	FCB	$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA
 	FCB	$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA
@@ -334,225 +334,225 @@ CSRC5
 	FCB	$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA
 	FCB	$AA,$AA,$AA,$AC,$CA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA
 	FCB	$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA,$AA
-*??????	FCB	$CC,$CC,$CC,$88,$88,$8C,$CC,$CC,$CC,$AC,$CC,$C8,$88,$8A,$AA
-*??????	FCB	$A8,$88,$CC,$CC,$C8,$8A,$AA,$AA,$8C,$CC,$88,$88,$88
-*??????	FCB	$88,$8C,$CC,$88,$88,$EE,$ED,$DD,$DD,$DD,$DD,$DD,$DD
-*??????	FCB	$DD,$DD,$DD,$DD,$DE,$E8,$88,$88,$88,$88,$CC,$AC,$AA
-*??????	FCB	$AA,$CC,$CC,$CC,$CC,$CC,$CC,$CC,$CC,$88,$88,$88,$8C
-*??????	FCB	$C8,$88,$CC,$CA,$AA,$AC,$CC,$CC,$C8,$88,$CC,$88,$8C
-*??????	FCB	$CC,$CC,$CC,$AA,$AA,$CC,$88,$88,$8C,$CC,$CC,$CC,$C0
-*??????	FCB	$0E,$EE,$EE,$88,$88,$CC,$CC,$CC,$C8,$8C,$88,$8C,$CC,$CC,$88
-*??????	FCB	$CC,$C8,$88,$88,$88,$CC,$C8,$8C,$CC,$88,$88,$CC,$CC
-*??????	FCB	$CC,$CC,$88,$CC,$C8,$8E,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$88,$8C,$CC,$CC,$88,$88,$8C,$C8
-*??????	FCB	$8C,$CC,$88,$8C,$CC,$88,$88,$CC,$CC,$8C,$CC,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$8C,$C8,$88,$88,$88,$CC,$CC
-*??????	FCB	$88,$88,$CC,$CC,$88,$88,$88,$CC,$CC,$C8,$88,$8C,$A0
-*??????	FCB	$0E,$EE,$EE,$EE,$88,$88,$8C,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$CC,$8C,$CC,$CC,$CE,$E8,$C8,$00
-*??????	FCB	$00,$00,$AC,$C8,$8C,$CC,$CC,$88,$8A,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$A8,$88,$8A,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$A8,$EC,$8C,$CC,$EE,$E8,$EE,$00,$00
-*??????	FCB	$00,$00,$EC,$CE,$EE,$E8,$EE,$88,$80,$0E,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$08,$88,$80,$0E,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$08,$8E,$E8,$EE,$88,$8E,$E0,$00,$00
-*??????	FCB	$00,$00,$0E,$88,$EE,$EE,$E8,$88,$C0,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EC,$88,$C0,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EC,$88,$EE,$E8,$88,$E0,$00,$00,$00
-*??????	FCB	$00,$00,$00,$E8,$88,$88,$88,$C8,$00,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$E0,$88,$00,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$E0,$88,$88,$8E,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$0E,$EE,$EE,$E8,$88,$0E,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$88,$0E,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$8E,$E8,$E0,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$0E,$8E,$0E,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$88,$0E,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$88,$EE,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$EE,$8E,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$E8,$88,$8E,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$E8,$8E,$E0,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$0E,$80,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$E8,$88,$80,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$E8,$80,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$0E,$88,$0E,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$88,$88,$88,$0E,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$EE,$80,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$80,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$88,$88,$8C,$CC,$88,$8C,$C8
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$CC,$CC,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$CC,$CC,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$CC,$C8,$88,$88,$00,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$88,$88,$EE,$88,$8E,$88,$88
-*??????	FCB	$8C,$CC,$8C,$CC,$88,$88,$CC,$CC,$88,$88,$88,$88,$CC
-*??????	FCB	$8C,$CC,$88,$88,$88,$88,$88,$88,$88,$88,$EE,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$8E,$88,$88,$88,$88,$88,$8E,$EE,$CC,$CC
-*??????	FCB	$C8,$88,$CC,$C8,$88,$CC,$C8,$88,$8C,$CC,$88,$8C,$CC
-*??????	FCB	$CC,$CC,$C8,$C8,$00,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$08,$A8,$CC,$8E,$EE,$EC,$C8,$CC
-*??????	FCB	$CC,$EE,$EC,$CC,$CC,$8E,$EE,$EE,$EE,$E8,$CC,$CC,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$EE,$E8,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$8E,$CC,$88,$88,$88,$8C,$EE,$88,$88,$8E
-*??????	FCB	$EE,$8E,$EE,$8C,$CC,$CC,$88,$8C,$CC,$EE,$EE,$EE,$EE
-*??????	FCB	$EC,$8C,$CC,$AA,$00,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$08,$C8,$8C,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$8E,$CC,$EE,$E8,$8E,$EE,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$8E,$EC,$C8,$88,$88,$88,$EE,$E8,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$EC,$CC,$C8,$88,$8C,$EE,$8E,$8E,$EE
-*??????	FCB	$EE,$E8,$88,$E8,$C8,$8C,$CC,$C8,$8C,$EE,$EE,$E8,$8E
-*??????	FCB	$E8,$E8,$CC,$AA,$80,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$08,$8C,$C8,$8E,$EE,$E8,$8E,$EE
-*??????	FCB	$EE,$0C,$C8,$EE,$E8,$88,$EE,$88,$CC,$CC,$88,$8E,$EE
-*??????	FCB	$8E,$EE,$88,$EE,$CC,$88,$C8,$8E,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$EC,$C8,$88,$8C,$C0,$EE,$EE,$EE,$8E
-*??????	FCB	$E8,$EE,$EE,$EE,$E8,$EE,$CC,$CE,$88,$CE,$EE,$EE,$E8
-*??????	FCB	$EE,$EE,$CC,$E8,$C0,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$8C,$C8,$8E,$EE,$E8,$8E,$EE,$EE
-*??????	FCB	$E0,$AC,$C8,$88,$88,$8E,$88,$8C,$C8,$EE,$EE,$EE,$88
-*??????	FCB	$EE,$EE,$08,$E8,$CC,$CC,$EE,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$8E,$EE,$C8,$E0,$0E,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$88,$8E,$E8,$8E,$EE,$EE,$88,$80,$EE,$EE,$88
-*??????	FCB	$E8,$EE,$EE,$88,$A0,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$AA,$CC,$CE,$8E,$EE,$8E,$EE,$E8,$EE
-*??????	FCB	$E0,$88,$EC,$C8,$88,$E8,$8C,$CC,$EE,$E8,$8E,$88,$EE
-*??????	FCB	$EE,$E0,$E8,$88,$8E,$EE,$E8,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$8E,$EE,$E8,$88,$00,$0E,$EE,$EE
-*??????	FCB	$EE,$EE,$EE,$E8,$EE,$E8,$EE,$CC,$C8,$8A,$0E,$EE,$EE
-*??????	FCB	$E8,$88,$8C,$CC,$A0,$00,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$8A,$88,$EE,$E8,$8E,$EE,$88,$EE,$EE
-*??????	FCB	$00,$EE,$88,$88,$8E,$88,$88,$88,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$00,$0E,$C8,$88,$E8,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$E8,$88,$88,$88,$88,$8E
-*??????	FCB	$EE,$EE,$EE,$EE,$EE,$88,$EE,$8C,$CC,$CA,$00,$EE,$E8
-*??????	FCB	$8E,$E8,$88,$EC,$C8,$E0,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$00,$88,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$E0
-*??????	FCB	$0E,$EE,$8C,$8C,$EE,$88,$8E,$EE,$EE,$EE,$EE,$EE,$E0
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$EE,$8C,$88,$88,$88,$8C
-*??????	FCB	$00,$EE,$EE,$EE,$E8,$E8,$E8,$EE,$EE,$EE,$E0,$EE,$EE
-*??????	FCB	$EE,$8E,$88,$8E,$EE,$80,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$CC,$8C,$88,$88,$EE,$EE,$EE,$EE,$EE,$00
-*??????	FCB	$88,$88,$EE,$EE,$EE,$88,$EE,$EE,$EE,$EE,$00,$EE,$08
-*??????	FCB	$88,$C8,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$8E,$E8,$88,$88,$88,$88
-*??????	FCB	$C0,$EE,$E0,$0E,$EE,$EE,$8E,$EE,$EE,$EE,$E0,$0E,$EE
-*??????	FCB	$EE,$EE,$EE,$88,$8C,$C0,$00,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$88,$CC,$88,$EE,$EE,$EE,$EE,$EE,$E0,$08
-*??????	FCB	$88,$88,$8E,$EE,$88,$8E,$EE,$E0,$00,$00,$C8,$0E,$08
-*??????	FCB	$A8,$88,$88,$8E,$E8,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$EE,$E8,$88,$88,$88
-*??????	FCB	$AA,$00,$08,$80,$EE,$E8,$EE,$EE,$88,$8C,$AC,$00,$00
-*??????	FCB	$0E,$EE,$EE,$EE,$8C,$CA,$E0,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$00,$00,$00,$8C,$EE,$EE,$EE,$EE,$EE,$E0,$00,$E0,$88
-*??????	FCB	$88,$88,$88,$EE,$E8,$8E,$EE,$00,$00,$08,$C8,$8E,$08
-*??????	FCB	$A8,$88,$88,$CE,$E8,$88,$88,$88,$88,$88,$88,$88,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$E8,$E8
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$EE,$EE,$88,$88,$8C
-*??????	FCB	$CA,$E0,$08,$8C,$0E,$EE,$EE,$EE,$EE,$CC,$A8,$00,$00
-*??????	FCB	$00,$0E,$EE,$EE,$EE,$CA,$A0,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$EE,$8A,$AC,$88,$88,$EE,$EE,$EE,$E0,$00,$00,$08,$A8
-*??????	FCB	$88,$8C,$8E,$EE,$88,$8E,$EE,$E0,$00,$0C,$88,$80,$0C
-*??????	FCB	$A8,$88,$8C,$EE,$E8,$88,$88,$88,$88,$88,$E8,$EE,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$8E,$8E,$EE
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$8E,$88,$EE,$EC,$8C,$CC
-*??????	FCB	$8E,$E0,$08,$88,$C0,$00,$EE,$EE,$8E,$88,$CE,$00,$00
-*??????	FCB	$00,$00,$EE,$EE,$E8,$8C,$C0,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$E8,$88,$E8,$88,$EE,$EE,$EE,$EE,$00,$00,$00,$0A,$88
-*??????	FCB	$88,$C8,$EE,$E8,$88,$EE,$EE,$E0,$00,$8E,$88,$80,$0A
-*??????	FCB	$CC,$88,$C8,$EE,$88,$88,$88,$88,$E8,$E8,$8E,$E8,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$8E,$88,$80,$0E
-*??????	FCB	$E8,$88,$88,$88,$88,$EE,$88,$88,$88,$8E,$EE,$EE,$EE
-*??????	FCB	$EE,$E0,$00,$88,$CC,$00,$0E,$EE,$E8,$EE,$E8,$C0,$00
-*??????	FCB	$00,$00,$0E,$EE,$EE,$E8,$88,$00,$00,$00,$00,$00,$00
-*??????	FCB	$00,$00,$8E,$EE,$8E,$EE,$EE,$EE,$00,$00,$00,$00,$00,$00,$CC
-*??????	FCB	$CC,$8E,$EE,$88,$8E,$EE,$EE,$00,$00,$88,$EE,$E0,$08
-*??????	FCB	$CC,$CC,$8E,$E8,$88,$88,$88,$88,$88,$8E,$EE,$08,$88
-*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$8E,$88,$88,$E0,$0E
-*??????	FCB	$EE,$88,$88,$8E,$8E,$88,$EE,$EE,$88,$88,$88,$EE,$EE
-*??????	FCB	$EE,$00,$00,$08,$8E,$00,$00,$EE,$EE,$E8,$88,$80,$08
-*??????	FCB	$88,$00,$0E,$EE,$EE,$EE,$E8,$88,$EE,$00,$00,$00,$00
-*??????	FCB	$00,$88,$CC,$88,$EE,$EE,$EE,$E0,$00,$00,$00,$C8,$E0,$00,$00
-*??????	FCB	$EE,$EE,$E8,$88,$EE,$EE,$E0,$00,$00,$0E,$EE,$E0,$00
-*??????	FCB	$88,$8E,$EE,$E8,$E8,$EE,$88,$8E,$EE,$EE,$00,$0E,$E8
-*??????	FCB	$88,$88,$88,$88,$88,$88,$8E,$EE,$E8,$88,$EE,$E8,$00
-*??????	FCB	$EE,$E8,$8E,$E8,$88,$88,$88,$88,$88,$88,$8E,$EE,$EE
-*??????	FCB	$00,$00,$00,$00,$EE,$E0,$00,$0E,$E8,$8E,$88,$E0,$0E
-*??????	FCB	$88,$80,$0E,$EE,$88,$8E,$E8,$88,$8E,$00,$00,$00,$00
-*??????	FCB	$00,$88,$88,$EE,$EE,$EE,$EE,$E0,$00,$00,$0C,$C8,$8E,$00,$00
-*??????	FCB	$EE,$E8,$88,$8E,$EE,$EE,$E0,$00,$00,$00,$EE,$00,$00
-*??????	FCB	$EE,$EE,$EE,$88,$8E,$EE,$EE,$EE,$EE,$EE,$00,$00,$EE
-*??????	FCB	$EE,$EE,$88,$88,$88,$88,$88,$88,$88,$8E,$EE,$EE,$00
-*??????	FCB	$EE,$EE,$E8,$8E,$EE,$EE,$E8,$8E,$EE,$EE,$88,$8E,$EE
-*??????	FCB	$EE,$E0,$00,$00,$00,$00,$00,$0E,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$E8,$E0,$00,$EE,$E8,$88,$8E,$EE,$8E,$00,$00,$00,$00
-*??????	FCB	$00,$88,$8E,$EE,$EE,$EE,$EE,$E0,$00,$00,$00,$88,$E0,$00,$00
-*??????	FCB	$0E,$EE,$EE,$EE,$EE,$EE,$E0,$00,$00,$00,$00,$00,$00
-*??????	FCB	$0E,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$00,$00,$00,$0E
-*??????	FCB	$EE,$EE,$EE,$8E,$E8,$88,$8E,$EE,$EE,$EE,$EE,$EE,$00
-*??????	FCB	$00,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$EE,$00,$00,$00,$00,$00,$0E,$EE,$EE,$EE,$EE,$EE
-*??????	FCB	$EE,$80,$00,$EE,$EE,$88,$88,$8E,$EE,$00,$00,$00,$00
-*
-*
+;*??????	FCB	$CC,$CC,$CC,$88,$88,$8C,$CC,$CC,$CC,$AC,$CC,$C8,$88,$8A,$AA
+;*??????	FCB	$A8,$88,$CC,$CC,$C8,$8A,$AA,$AA,$8C,$CC,$88,$88,$88
+;*??????	FCB	$88,$8C,$CC,$88,$88,$EE,$ED,$DD,$DD,$DD,$DD,$DD,$DD
+;*??????	FCB	$DD,$DD,$DD,$DD,$DE,$E8,$88,$88,$88,$88,$CC,$AC,$AA
+;*??????	FCB	$AA,$CC,$CC,$CC,$CC,$CC,$CC,$CC,$CC,$88,$88,$88,$8C
+;*??????	FCB	$C8,$88,$CC,$CA,$AA,$AC,$CC,$CC,$C8,$88,$CC,$88,$8C
+;*??????	FCB	$CC,$CC,$CC,$AA,$AA,$CC,$88,$88,$8C,$CC,$CC,$CC,$C0
+;*??????	FCB	$0E,$EE,$EE,$88,$88,$CC,$CC,$CC,$C8,$8C,$88,$8C,$CC,$CC,$88
+;*??????	FCB	$CC,$C8,$88,$88,$88,$CC,$C8,$8C,$CC,$88,$88,$CC,$CC
+;*??????	FCB	$CC,$CC,$88,$CC,$C8,$8E,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$88,$8C,$CC,$CC,$88,$88,$8C,$C8
+;*??????	FCB	$8C,$CC,$88,$8C,$CC,$88,$88,$CC,$CC,$8C,$CC,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$8C,$C8,$88,$88,$88,$CC,$CC
+;*??????	FCB	$88,$88,$CC,$CC,$88,$88,$88,$CC,$CC,$C8,$88,$8C,$A0
+;*??????	FCB	$0E,$EE,$EE,$EE,$88,$88,$8C,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$CC,$8C,$CC,$CC,$CE,$E8,$C8,$00
+;*??????	FCB	$00,$00,$AC,$C8,$8C,$CC,$CC,$88,$8A,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$A8,$88,$8A,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$A8,$EC,$8C,$CC,$EE,$E8,$EE,$00,$00
+;*??????	FCB	$00,$00,$EC,$CE,$EE,$E8,$EE,$88,$80,$0E,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$08,$88,$80,$0E,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$08,$8E,$E8,$EE,$88,$8E,$E0,$00,$00
+;*??????	FCB	$00,$00,$0E,$88,$EE,$EE,$E8,$88,$C0,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EC,$88,$C0,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EC,$88,$EE,$E8,$88,$E0,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$E8,$88,$88,$88,$C8,$00,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$E0,$88,$00,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$E0,$88,$88,$8E,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$0E,$EE,$EE,$E8,$88,$0E,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$88,$0E,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$8E,$E8,$E0,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$0E,$8E,$0E,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$88,$0E,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$88,$EE,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$EE,$8E,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$E8,$88,$8E,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$E8,$8E,$E0,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$0E,$80,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$E8,$88,$80,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$E8,$80,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$0E,$88,$0E,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$88,$88,$88,$0E,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$EE,$80,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$80,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$88,$88,$8C,$CC,$88,$8C,$C8
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$CC,$CC,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$CC,$CC,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$CC,$C8,$88,$88,$00,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$88,$88,$EE,$88,$8E,$88,$88
+;*??????	FCB	$8C,$CC,$8C,$CC,$88,$88,$CC,$CC,$88,$88,$88,$88,$CC
+;*??????	FCB	$8C,$CC,$88,$88,$88,$88,$88,$88,$88,$88,$EE,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$8E,$88,$88,$88,$88,$88,$8E,$EE,$CC,$CC
+;*??????	FCB	$C8,$88,$CC,$C8,$88,$CC,$C8,$88,$8C,$CC,$88,$8C,$CC
+;*??????	FCB	$CC,$CC,$C8,$C8,$00,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$08,$A8,$CC,$8E,$EE,$EC,$C8,$CC
+;*??????	FCB	$CC,$EE,$EC,$CC,$CC,$8E,$EE,$EE,$EE,$E8,$CC,$CC,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$EE,$E8,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$8E,$CC,$88,$88,$88,$8C,$EE,$88,$88,$8E
+;*??????	FCB	$EE,$8E,$EE,$8C,$CC,$CC,$88,$8C,$CC,$EE,$EE,$EE,$EE
+;*??????	FCB	$EC,$8C,$CC,$AA,$00,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$08,$C8,$8C,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$8E,$CC,$EE,$E8,$8E,$EE,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$8E,$EC,$C8,$88,$88,$88,$EE,$E8,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$EC,$CC,$C8,$88,$8C,$EE,$8E,$8E,$EE
+;*??????	FCB	$EE,$E8,$88,$E8,$C8,$8C,$CC,$C8,$8C,$EE,$EE,$E8,$8E
+;*??????	FCB	$E8,$E8,$CC,$AA,$80,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$08,$8C,$C8,$8E,$EE,$E8,$8E,$EE
+;*??????	FCB	$EE,$0C,$C8,$EE,$E8,$88,$EE,$88,$CC,$CC,$88,$8E,$EE
+;*??????	FCB	$8E,$EE,$88,$EE,$CC,$88,$C8,$8E,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$EC,$C8,$88,$8C,$C0,$EE,$EE,$EE,$8E
+;*??????	FCB	$E8,$EE,$EE,$EE,$E8,$EE,$CC,$CE,$88,$CE,$EE,$EE,$E8
+;*??????	FCB	$EE,$EE,$CC,$E8,$C0,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$00,$8C,$C8,$8E,$EE,$E8,$8E,$EE,$EE
+;*??????	FCB	$E0,$AC,$C8,$88,$88,$8E,$88,$8C,$C8,$EE,$EE,$EE,$88
+;*??????	FCB	$EE,$EE,$08,$E8,$CC,$CC,$EE,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$8E,$EE,$C8,$E0,$0E,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$88,$8E,$E8,$8E,$EE,$EE,$88,$80,$EE,$EE,$88
+;*??????	FCB	$E8,$EE,$EE,$88,$A0,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$AA,$CC,$CE,$8E,$EE,$8E,$EE,$E8,$EE
+;*??????	FCB	$E0,$88,$EC,$C8,$88,$E8,$8C,$CC,$EE,$E8,$8E,$88,$EE
+;*??????	FCB	$EE,$E0,$E8,$88,$8E,$EE,$E8,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$8E,$EE,$E8,$88,$00,$0E,$EE,$EE
+;*??????	FCB	$EE,$EE,$EE,$E8,$EE,$E8,$EE,$CC,$C8,$8A,$0E,$EE,$EE
+;*??????	FCB	$E8,$88,$8C,$CC,$A0,$00,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$8A,$88,$EE,$E8,$8E,$EE,$88,$EE,$EE
+;*??????	FCB	$00,$EE,$88,$88,$8E,$88,$88,$88,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$00,$0E,$C8,$88,$E8,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$E8,$88,$88,$88,$88,$8E
+;*??????	FCB	$EE,$EE,$EE,$EE,$EE,$88,$EE,$8C,$CC,$CA,$00,$EE,$E8
+;*??????	FCB	$8E,$E8,$88,$EC,$C8,$E0,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$00,$88,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$E0
+;*??????	FCB	$0E,$EE,$8C,$8C,$EE,$88,$8E,$EE,$EE,$EE,$EE,$EE,$E0
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$EE,$8C,$88,$88,$88,$8C
+;*??????	FCB	$00,$EE,$EE,$EE,$E8,$E8,$E8,$EE,$EE,$EE,$E0,$EE,$EE
+;*??????	FCB	$EE,$8E,$88,$8E,$EE,$80,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$CC,$8C,$88,$88,$EE,$EE,$EE,$EE,$EE,$00
+;*??????	FCB	$88,$88,$EE,$EE,$EE,$88,$EE,$EE,$EE,$EE,$00,$EE,$08
+;*??????	FCB	$88,$C8,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$8E,$E8,$88,$88,$88,$88
+;*??????	FCB	$C0,$EE,$E0,$0E,$EE,$EE,$8E,$EE,$EE,$EE,$E0,$0E,$EE
+;*??????	FCB	$EE,$EE,$EE,$88,$8C,$C0,$00,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$88,$CC,$88,$EE,$EE,$EE,$EE,$EE,$E0,$08
+;*??????	FCB	$88,$88,$8E,$EE,$88,$8E,$EE,$E0,$00,$00,$C8,$0E,$08
+;*??????	FCB	$A8,$88,$88,$8E,$E8,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$EE,$E8,$88,$88,$88
+;*??????	FCB	$AA,$00,$08,$80,$EE,$E8,$EE,$EE,$88,$8C,$AC,$00,$00
+;*??????	FCB	$0E,$EE,$EE,$EE,$8C,$CA,$E0,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$00,$00,$00,$8C,$EE,$EE,$EE,$EE,$EE,$E0,$00,$E0,$88
+;*??????	FCB	$88,$88,$88,$EE,$E8,$8E,$EE,$00,$00,$08,$C8,$8E,$08
+;*??????	FCB	$A8,$88,$88,$CE,$E8,$88,$88,$88,$88,$88,$88,$88,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$E8,$E8
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$EE,$EE,$88,$88,$8C
+;*??????	FCB	$CA,$E0,$08,$8C,$0E,$EE,$EE,$EE,$EE,$CC,$A8,$00,$00
+;*??????	FCB	$00,$0E,$EE,$EE,$EE,$CA,$A0,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$EE,$8A,$AC,$88,$88,$EE,$EE,$EE,$E0,$00,$00,$08,$A8
+;*??????	FCB	$88,$8C,$8E,$EE,$88,$8E,$EE,$E0,$00,$0C,$88,$80,$0C
+;*??????	FCB	$A8,$88,$8C,$EE,$E8,$88,$88,$88,$88,$88,$E8,$EE,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$88,$8E,$8E,$EE
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$8E,$88,$EE,$EC,$8C,$CC
+;*??????	FCB	$8E,$E0,$08,$88,$C0,$00,$EE,$EE,$8E,$88,$CE,$00,$00
+;*??????	FCB	$00,$00,$EE,$EE,$E8,$8C,$C0,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$E8,$88,$E8,$88,$EE,$EE,$EE,$EE,$00,$00,$00,$0A,$88
+;*??????	FCB	$88,$C8,$EE,$E8,$88,$EE,$EE,$E0,$00,$8E,$88,$80,$0A
+;*??????	FCB	$CC,$88,$C8,$EE,$88,$88,$88,$88,$E8,$E8,$8E,$E8,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$88,$8E,$88,$80,$0E
+;*??????	FCB	$E8,$88,$88,$88,$88,$EE,$88,$88,$88,$8E,$EE,$EE,$EE
+;*??????	FCB	$EE,$E0,$00,$88,$CC,$00,$0E,$EE,$E8,$EE,$E8,$C0,$00
+;*??????	FCB	$00,$00,$0E,$EE,$EE,$E8,$88,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$00,$00,$8E,$EE,$8E,$EE,$EE,$EE,$00,$00,$00,$00,$00,$00,$CC
+;*??????	FCB	$CC,$8E,$EE,$88,$8E,$EE,$EE,$00,$00,$88,$EE,$E0,$08
+;*??????	FCB	$CC,$CC,$8E,$E8,$88,$88,$88,$88,$88,$8E,$EE,$08,$88
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$88,$88,$8E,$88,$88,$E0,$0E
+;*??????	FCB	$EE,$88,$88,$8E,$8E,$88,$EE,$EE,$88,$88,$88,$EE,$EE
+;*??????	FCB	$EE,$00,$00,$08,$8E,$00,$00,$EE,$EE,$E8,$88,$80,$08
+;*??????	FCB	$88,$00,$0E,$EE,$EE,$EE,$E8,$88,$EE,$00,$00,$00,$00
+;*??????	FCB	$00,$88,$CC,$88,$EE,$EE,$EE,$E0,$00,$00,$00,$C8,$E0,$00,$00
+;*??????	FCB	$EE,$EE,$E8,$88,$EE,$EE,$E0,$00,$00,$0E,$EE,$E0,$00
+;*??????	FCB	$88,$8E,$EE,$E8,$E8,$EE,$88,$8E,$EE,$EE,$00,$0E,$E8
+;*??????	FCB	$88,$88,$88,$88,$88,$88,$8E,$EE,$E8,$88,$EE,$E8,$00
+;*??????	FCB	$EE,$E8,$8E,$E8,$88,$88,$88,$88,$88,$88,$8E,$EE,$EE
+;*??????	FCB	$00,$00,$00,$00,$EE,$E0,$00,$0E,$E8,$8E,$88,$E0,$0E
+;*??????	FCB	$88,$80,$0E,$EE,$88,$8E,$E8,$88,$8E,$00,$00,$00,$00
+;*??????	FCB	$00,$88,$88,$EE,$EE,$EE,$EE,$E0,$00,$00,$0C,$C8,$8E,$00,$00
+;*??????	FCB	$EE,$E8,$88,$8E,$EE,$EE,$E0,$00,$00,$00,$EE,$00,$00
+;*??????	FCB	$EE,$EE,$EE,$88,$8E,$EE,$EE,$EE,$EE,$EE,$00,$00,$EE
+;*??????	FCB	$EE,$EE,$88,$88,$88,$88,$88,$88,$88,$8E,$EE,$EE,$00
+;*??????	FCB	$EE,$EE,$E8,$8E,$EE,$EE,$E8,$8E,$EE,$EE,$88,$8E,$EE
+;*??????	FCB	$EE,$E0,$00,$00,$00,$00,$00,$0E,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$E8,$E0,$00,$EE,$E8,$88,$8E,$EE,$8E,$00,$00,$00,$00
+;*??????	FCB	$00,$88,$8E,$EE,$EE,$EE,$EE,$E0,$00,$00,$00,$88,$E0,$00,$00
+;*??????	FCB	$0E,$EE,$EE,$EE,$EE,$EE,$E0,$00,$00,$00,$00,$00,$00
+;*??????	FCB	$0E,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$00,$00,$00,$0E
+;*??????	FCB	$EE,$EE,$EE,$8E,$E8,$88,$8E,$EE,$EE,$EE,$EE,$EE,$00
+;*??????	FCB	$00,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$EE,$00,$00,$00,$00,$00,$0E,$EE,$EE,$EE,$EE,$EE
+;*??????	FCB	$EE,$80,$00,$EE,$EE,$88,$88,$8E,$EE,$00,$00,$00,$00
+;*
+;*
 CCLF5	FDB	1+COFF,186+COFF
 	FDB	1+COFF,186+COFF
 	FDB	1+COFF,185+COFF
@@ -566,31 +566,31 @@ CCLF5	FDB	1+COFF,186+COFF
 	FDB	14+COFF,174+COFF
 	FDB	15+COFF,173+COFF
 	FDB	16+COFF,171+COFF
-*
-	FDB	16+COFF,171+COFF	NO ONE SHOULD BE HERE OR BELOW
+;*
+	FDB	16+COFF,171+COFF	;NO ONE SHOULD BE HERE OR BELOW
 	FDB	16+COFF,171+COFF
 	FDB	16+COFF,171+COFF
 	FDB	16+COFF,171+COFF
 	FDB	16+COFF,171+COFF
 	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-********	FDB	16+COFF,171+COFF
-	FDB	$8100,$8100		TERMINATING POINTER
-*
-*	COMPACTED CLIF5
-*
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+;********	FDB	16+COFF,171+COFF
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
+;*	COMPACTED CLIF5
+;*
 COMCL5	FCB	%00001110,%10011111,%01110110,%11110111,%00101001,%11000111
 	FCB	%10110111,%11110010,%11110100,%00010101,%11011100,%01000011
 	FCB	%01010110,%01001101,%01100010,%10010111,%00101001,%11000111
@@ -738,29 +738,29 @@ COMCL5	FCB	%00001110,%10011111,%01110110,%11110111,%00101001,%11000111
 	FCB	%00011111,%11110010,%10100001,%10111011,%10010101,%11110001
 	FCB	%10000000
 CL5LEN	EQU	*-COMCL5
-*
-*
-*	TRANSPORTERS
+;*
+;*
+;*	TRANSPORTERS
 TRASRC
 	FDB	$DDDD,$DDDD,$DDDD,$DDDD,$DDDD,$DDDD,$DDDD
 	FDB	$0DDD,$DDDD,$DDDD,$DDDD,$DDDD,$DDDD,$DDD0
 	FDB	$000D,$DDDD,$DDDD,$DDDD,$DDDD,$DDDD,$D000
-*
-TRANS1	FDB	$0A00,TRASRC,$3551,$0E03!XDMAFIX		OLD X $6A
-TRANS2	FDB	$0A00,TRASRC,$7081,$0E03!XDMAFIX		OLD X $E0
-TRANS3	FDB	$0A00,TRASRC,$088A,$0E03!XDMAFIX		OLD X $10
-TRANS4	FDB	$0A00,TRASRC,$3CD3,$0E03!XDMAFIX		OLD X $78
-*
-*
-*
-*	OSTRICH FLYING, RUNNING, SKIDDING, & STANDING FRAMES
-*
-*
+;*
+TRANS1	FDB	$0A00,TRASRC,$3551,$0E03!DMAFIX			;OLD X $6A	;;Fixme was: !XDMAFIX
+TRANS2	FDB	$0A00,TRASRC,$7081,$0E03!DMAFIX			;OLD X $E0      ;;Fixme was: !XDMAFIX
+TRANS3	FDB	$0A00,TRASRC,$088A,$0E03!DMAFIX			;OLD X $10	;;Fixme was: !XDMAFIX
+TRANS4	FDB	$0A00,TRASRC,$3CD3,$0E03!DMAFIX			;OLD X $78      ;;Fixme was: !XDMAFIX
+;*
+;*
+;*
+;*	OSTRICH FLYING, RUNNING, SKIDDING, & STANDING FRAMES
+;*
+;*
 OSTRICH	EQU	*
 ORSKID	FDB	CSKIDR,$00EF,ORUNSR
 	FDB	CSKIDL,$01EF,ORUNSL
-ORSTND	FDB	CSTN4R,$00ED,ORUN4R	CSTN0R,$00ED,ORUN0R
-	FDB	CSTN4L,$01ED,ORUN4L	CSTN0L,$00ED,ORUN0L
+ORSTND	FDB	CSTN4R,$00ED,ORUN4R	;CSTN0R,$00ED,ORUN0R
+	FDB	CSTN4L,$01ED,ORUN4L	;CSTN0L,$00ED,ORUN0L
 ORRUN1	FDB	CSTN1R,$00ED,ORUN1R
 	FDB	CSTN1L,$01ED,ORUN1L
 ORRUN2	FDB	CSTN2R,$00ED,ORUN2R
@@ -771,18 +771,18 @@ ORRUN4	FDB	CSTN4R,$00ED,ORUN4R
 	FDB	CSTN4L,$01ED,ORUN4L
 ORFLAP	FDB	CWNG1R,$00ED,OFLY1R
 	FDB	CWNG1L,$00ED,OFLY1L
-ORFLOP	FDB	CWNG2R,$00ED,OFLY1R	,OFLY2R
-	FDB	CWNG2L,$00ED,OFLY1L	,OFLY2L
+ORFLOP	FDB	CWNG2R,$00ED,OFLY1R	;,OFLY2R
+	FDB	CWNG2L,$00ED,OFLY1L	;,OFLY2L
 ORFLIP	FDB	CWNG3R,$00ED,OFLY3R
 	FDB	CWNG3L,$00ED,OFLY3L
-*
-*	STORK
-*
+;*
+;*	STORK
+;*
 STORK	EQU	*
 	FDB	CSKIDR,$00EE,SRUNSR
 	FDB	CSKIDL,$02EE,SRUNSL
-	FDB	CSTN4R,$00ED,SRUN4R	CSTN0R,$00ED,SRUN0R
-	FDB	CSTN4L,$01ED,SRUN4L	CSTN0L,$00ED,SRUN0L
+	FDB	CSTN4R,$00ED,SRUN4R	;CSTN0R,$00ED,SRUN0R
+	FDB	CSTN4L,$01ED,SRUN4L	;CSTN0L,$00ED,SRUN0L
 	FDB	CSTN1R,$00ED,SRUN1R
 	FDB	CSTN1L,$00ED,SRUN1L
 	FDB	CSTN2R,$00ED,SRUN2R
@@ -793,11 +793,11 @@ STORK	EQU	*
 	FDB	CSTN4L,$01ED,SRUN4L
 	FDB	CWNG1R,$00ED,SFLY1R
 	FDB	CWNG1L,$01ED,SFLY1L
-	FDB	CWNG2R,$00ED,SFLY1R	,SFLY2R
-	FDB	CWNG2L,$01ED,SFLY1L	,SFLY2L
+	FDB	CWNG2R,$00ED,SFLY1R	;,SFLY2R
+	FDB	CWNG2L,$01ED,SFLY1L	;,SFLY2L
 	FDB	CWNG3R,$00ED,SFLY3R
 	FDB	CWNG3L,$00ED,SFLY3L
-*
+;*
 CWNG1R
 CWNG2R
 CWNG3R	FDB	7+COFF,9+COFF
@@ -814,8 +814,8 @@ CWNG3R	FDB	7+COFF,9+COFF
 	FDB	5+COFF,12+COFF
 	FDB	11+COFF,12+COFF
 	FDB	$8100,$8100
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
 CWNG1L
 CWNG2L
 CWNG3L	FDB	10+COFF,12+COFF
@@ -832,10 +832,10 @@ CWNG3L	FDB	10+COFF,12+COFF
 	FDB	7+COFF,14+COFF
 	FDB	7+COFF,8+COFF
 	FDB	$8100,$8100
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
-CSKIDR	FDB	$8000,$8000	NO COLISION ON THIS LINE
-	FDB	$8000,$8000	NO COLISION ON THIS LINE
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
+CSKIDR	FDB	$8000,$8000	;NO COLISION ON THIS LINE
+	FDB	$8000,$8000	;NO COLISION ON THIS LINE
 	FDB	7+COFF,9+COFF
 	FDB	7+COFF,9+COFF
 	FDB	7+COFF,8+COFF
@@ -854,8 +854,8 @@ CSKIDR	FDB	$8000,$8000	NO COLISION ON THIS LINE
 	FDB	7+COFF,13+COFF
 	FDB	7+COFF,14+COFF
 	FDB	8+COFF,15+COFF
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
 CSTN1R	FDB	7+COFF,9+COFF
 	FDB	7+COFF,9+COFF
 	FDB	7+COFF,8+COFF
@@ -876,12 +876,12 @@ CSTN1R	FDB	7+COFF,9+COFF
 	FDB	7+COFF,9+COFF
 	FDB	7+COFF,9+COFF
 	FDB	7+COFF,10+COFF
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
-*	AND THE EVER POPULAR COPYRIGHT MESSAGE
-*
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
+;*	AND THE EVER POPULAR COPYRIGHT MESSAGE
+;*
 	FCC	'JOUST (C) 1982 WILLIAMS ELECTRONICS INC.'
-*
+;*
 CSTN2R	FDB	7+COFF,9+COFF
 	FDB	7+COFF,9+COFF
 	FDB	7+COFF,8+COFF
@@ -902,8 +902,8 @@ CSTN2R	FDB	7+COFF,9+COFF
 	FDB	6+COFF,13+COFF
 	FDB	6+COFF,13+COFF
 	FDB	6+COFF,8+COFF
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
 CSTN3R	FDB	7+COFF,9+COFF
 	FDB	7+COFF,9+COFF
 	FDB	7+COFF,8+COFF
@@ -924,8 +924,8 @@ CSTN3R	FDB	7+COFF,9+COFF
 	FDB	5+COFF,14+COFF
 	FDB	5+COFF,14+COFF
 	FDB	5+COFF,14+COFF
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
 CSTN4R	FDB	7+COFF,9+COFF
 	FDB	7+COFF,9+COFF
 	FDB	7+COFF,8+COFF
@@ -946,10 +946,10 @@ CSTN4R	FDB	7+COFF,9+COFF
 	FDB	4+COFF,10+COFF
 	FDB	4+COFF,10+COFF
 	FDB	4+COFF,11+COFF
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
-CSKIDL	FDB	$8000,$8000	NO COLISION ON THIS LINE
-	FDB	$8000,$8000	NO COLISION ON THIS LINE
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
+CSKIDL	FDB	$8000,$8000	;NO COLISION ON THIS LINE
+	FDB	$8000,$8000	;NO COLISION ON THIS LINE
 	FDB	10+COFF,12+COFF
 	FDB	10+COFF,12+COFF
 	FDB	11+COFF,12+COFF
@@ -968,8 +968,8 @@ CSKIDL	FDB	$8000,$8000	NO COLISION ON THIS LINE
 	FDB	6+COFF,12+COFF
 	FDB	5+COFF,12+COFF
 	FDB	4+COFF,13+COFF
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
 CSTN1L	FDB	10+COFF,12+COFF
 	FDB	10+COFF,12+COFF
 	FDB	11+COFF,12+COFF
@@ -990,8 +990,8 @@ CSTN1L	FDB	10+COFF,12+COFF
 	FDB	10+COFF,12+COFF
 	FDB	10+COFF,12+COFF
 	FDB	9+COFF,12+COFF
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
 CSTN2L	FDB	10+COFF,12+COFF
 	FDB	10+COFF,12+COFF
 	FDB	11+COFF,12+COFF
@@ -1012,8 +1012,8 @@ CSTN2L	FDB	10+COFF,12+COFF
 	FDB	4+COFF,13+COFF
 	FDB	4+COFF,13+COFF
 	FDB	11+COFF,13+COFF
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
 CSTN3L	FDB	10+COFF,12+COFF
 	FDB	10+COFF,12+COFF
 	FDB	11+COFF,12+COFF
@@ -1034,8 +1034,8 @@ CSTN3L	FDB	10+COFF,12+COFF
 	FDB	5+COFF,14+COFF
 	FDB	5+COFF,14+COFF
 	FDB	5+COFF,14+COFF
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
 CSTN4L	FDB	10+COFF,12+COFF
 	FDB	10+COFF,12+COFF
 	FDB	11+COFF,12+COFF
@@ -1056,15 +1056,15 @@ CSTN4L	FDB	10+COFF,12+COFF
 	FDB	9+COFF,15+COFF
 	FDB	9+COFF,15+COFF
 	FDB	8+COFF,15+COFF
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
-*
-*	STORK IMAGES
-*		(RIGHT)
-*
-*AAFF0A1478B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SRUN1R	FDB	$0914!XDMAFIX
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
+;*
+;*	STORK IMAGES
+;*		(RIGHT)
+;*
+;*AAFF0A1478B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SRUN1R	FDB	$0914!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$06,$D3,$00,$00
 	FCB	$00,$00,$00,$00,$00,$01,$94,$C4,$E0
 	FCB	$00,$00,$00,$00,$00,$09,$18,$00,$00
@@ -1085,9 +1085,9 @@ SRUN1R	FDB	$0914!XDMAFIX
 	FCB	$00,$00,$00,$0C,$EE,$80,$00,$00,$00
 	FCB	$00,$00,$00,$0C,$80,$00,$00,$00,$00
 	FCB	$00,$00,$00,$08,$C6,$00,$00,$00,$00
-*AAFF091478B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SRUN2R	FDB	$0814!XDMAFIX
+;*AAFF091478B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SRUN2R	FDB	$0814!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$6D,$30,$00
 	FCB	$00,$00,$00,$00,$00,$19,$4C,$40
 	FCB	$00,$00,$00,$00,$00,$91,$80,$00
@@ -1108,9 +1108,9 @@ SRUN2R	FDB	$0814!XDMAFIX
 	FCB	$00,$00,$08,$F0,$00,$08,$80,$00
 	FCB	$00,$00,$08,$CE,$00,$00,$80,$00
 	FCB	$00,$00,$0E,$CC,$00,$00,$00,$00
-*AAFF091478B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SRUN3R	FDB	$0914!XDMAFIX
+;*AAFF091478B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SRUN3R	FDB	$0914!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$6D,$30,$00,$00
 	FCB	$00,$00,$00,$00,$00,$19,$4C,$4E,$00
 	FCB	$00,$00,$00,$00,$00,$91,$80,$00,$00
@@ -1131,9 +1131,9 @@ SRUN3R	FDB	$0914!XDMAFIX
 	FCB	$00,$00,$8C,$E0,$00,$08,$CE,$00,$00
 	FCB	$00,$00,$C8,$00,$00,$0E,$88,$00,$00
 	FCB	$00,$00,$CC,$00,$00,$0E,$EC,$00,$00
-*AAFF091478B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SRUN4R	FDB	$0914!XDMAFIX
+;*AAFF091478B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SRUN4R	FDB	$0914!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$06,$D3,$00,$00
 	FCB	$00,$00,$00,$00,$00,$01,$94,$C4,$00
 	FCB	$00,$00,$00,$00,$00,$09,$18,$00,$00
@@ -1154,9 +1154,9 @@ SRUN4R	FDB	$0914!XDMAFIX
 	FCB	$00,$00,$C0,$00,$88,$00,$00,$00,$00
 	FCB	$00,$08,$C0,$00,$EC,$00,$00,$00,$00
 	FCB	$00,$0C,$C0,$00,$0C,$C0,$00,$00,$00
-*AAFF081378B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SRUNSR	FDB	$0813!XDMAFIX
+;*AAFF081378B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SRUNSR	FDB	$0813!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$03,$D3,$00,$00
 	FCB	$00,$00,$00,$00,$0D,$94,$CE,$00
 	FCB	$00,$00,$00,$00,$09,$18,$84,$00
@@ -1176,9 +1176,9 @@ SRUNSR	FDB	$0813!XDMAFIX
 	FCB	$00,$00,$00,$00,$EC,$EC,$E0,$00
 	FCB	$00,$00,$00,$00,$0E,$CE,$CE,$00
 	FCB	$00,$00,$00,$00,$00,$CC,$EC,$00
-*AAFF090E78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SFLY1R	FDB	$090E!XDMAFIX
+;*AAFF090E78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SFLY1R	FDB	$090E!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$6D,$30,$00,$00
 	FCB	$00,$00,$00,$00,$00,$19,$4C,$4E,$00
 	FCB	$00,$00,$00,$00,$00,$91,$80,$00,$00
@@ -1193,9 +1193,9 @@ SFLY1R	FDB	$090E!XDMAFIX
 	FCB	$08,$48,$68,$C4,$C4,$88,$00,$00,$00
 	FCB	$00,$80,$EE,$88,$4E,$CE,$C0,$00,$00
 	FCB	$00,$00,$00,$0E,$8E,$8E,$00,$00,$00
-*AAFF0A0D78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SFLY3R	FDB	$090D!XDMAFIX
+;*AAFF0A0D78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SFLY3R	FDB	$090D!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$C8,$00,$00,$00,$00,$00,$00,$00
 	FCB	$0C,$04,$D0,$00,$00,$06,$D3,$00,$00
 	FCB	$00,$44,$DD,$00,$00,$0D,$94,$C4,$E0
@@ -1209,13 +1209,13 @@ SFLY3R	FDB	$090D!XDMAFIX
 	FCB	$04,$C4,$58,$8C,$1D,$C0,$00,$00,$00
 	FCB	$04,$54,$0E,$E8,$88,$00,$00,$00,$00
 	FCB	$00,$00,$88,$E0,$08,$00,$00,$00,$00
-*
-*	(LEFT)
-*	STORK LEFT FACED IMAGES
-*
-*AAFF0A1478B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SRUN1L	FDB	$0914!XDMAFIX
+;*
+;*	(LEFT)
+;*	STORK LEFT FACED IMAGES
+;*
+;*AAFF0A1478B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SRUN1L	FDB	$0914!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$3D,$60,$00,$00,$00,$00,$00
 	FCB	$0E,$4C,$49,$10,$00,$00,$00,$00,$00
 	FCB	$00,$00,$81,$90,$00,$00,$00,$00,$00
@@ -1236,9 +1236,9 @@ SRUN1L	FDB	$0914!XDMAFIX
 	FCB	$00,$00,$00,$08,$EE,$C0,$00,$00,$00
 	FCB	$00,$00,$00,$00,$08,$C0,$00,$00,$00
 	FCB	$00,$00,$00,$00,$6C,$80,$00,$00,$00
-*AAFF091478B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SRUN2L	FDB	$0814!XDMAFIX
+;*AAFF091478B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SRUN2L	FDB	$0814!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$03,$D6,$00,$00,$00,$00,$00
 	FCB	$04,$C4,$91,$00,$00,$00,$00,$00
 	FCB	$00,$08,$19,$00,$00,$00,$00,$00
@@ -1259,9 +1259,9 @@ SRUN2L	FDB	$0814!XDMAFIX
 	FCB	$00,$08,$80,$00,$0F,$80,$00,$00
 	FCB	$00,$08,$00,$00,$EC,$80,$00,$00
 	FCB	$00,$00,$00,$00,$CC,$E0,$00,$00
-*AAFF091478B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SRUN3L	FDB	$0814!XDMAFIX
+;*AAFF091478B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SRUN3L	FDB	$0814!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$03,$D6,$00,$00,$00,$00,$00
 	FCB	$E4,$C4,$91,$00,$00,$00,$00,$00
 	FCB	$00,$08,$19,$00,$00,$00,$00,$00
@@ -1282,9 +1282,9 @@ SRUN3L	FDB	$0814!XDMAFIX
 	FCB	$00,$EC,$80,$00,$0E,$C8,$00,$00
 	FCB	$00,$88,$E0,$00,$00,$8C,$00,$00
 	FCB	$00,$CE,$E0,$00,$00,$CC,$00,$00
-*AAFF091478B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SRUN4L	FDB	$0814!XDMAFIX
+;*AAFF091478B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SRUN4L	FDB	$0814!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$3D,$60,$00,$00,$00,$00,$00
 	FCB	$4C,$49,$10,$00,$00,$00,$00,$00
 	FCB	$00,$81,$90,$00,$00,$00,$00,$00
@@ -1305,9 +1305,9 @@ SRUN4L	FDB	$0814!XDMAFIX
 	FCB	$00,$00,$00,$88,$00,$0C,$00,$00
 	FCB	$00,$00,$00,$CE,$00,$0C,$80,$00
 	FCB	$00,$00,$0C,$C0,$00,$0C,$C0,$00
-*AAFF081378B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SRUNSL	FDB	$0713!XDMAFIX
+;*AAFF081378B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SRUNSL	FDB	$0713!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$3D,$30,$00,$00,$00,$00
 	FCB	$EC,$49,$D0,$00,$00,$00,$00
 	FCB	$48,$81,$90,$00,$00,$00,$00
@@ -1327,9 +1327,9 @@ SRUNSL	FDB	$0713!XDMAFIX
 	FCB	$0E,$CE,$CE,$00,$00,$00,$00
 	FCB	$EC,$EC,$E0,$00,$00,$00,$00
 	FCB	$CE,$CC,$00,$00,$00,$00,$00
-*AAFF090E78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SFLY1L	FDB	$080E!XDMAFIX
+;*AAFF090E78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SFLY1L	FDB	$080E!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$03,$D6,$00,$00,$00,$00,$00
 	FCB	$E4,$C4,$91,$00,$00,$00,$00,$00
 	FCB	$00,$08,$19,$00,$00,$00,$00,$00
@@ -1344,9 +1344,9 @@ SFLY1L	FDB	$080E!XDMAFIX
 	FCB	$00,$00,$88,$4C,$4C,$86,$84,$80
 	FCB	$00,$0C,$EC,$E4,$88,$EE,$08,$00
 	FCB	$00,$00,$E8,$E8,$E0,$00,$00,$00
-*AAFF0A0D78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-SFLY3L	FDB	$090D!XDMAFIX
+;*AAFF0A0D78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+SFLY3L	FDB	$090D!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$00,$00,$8C,$00
 	FCB	$00,$00,$3D,$60,$00,$00,$0D,$40,$C0
 	FCB	$0E,$4C,$49,$D0,$00,$00,$DD,$44,$00
@@ -1360,12 +1360,12 @@ SFLY3L	FDB	$090D!XDMAFIX
 	FCB	$00,$00,$00,$0C,$D1,$C8,$85,$4C,$40
 	FCB	$00,$00,$00,$00,$88,$8E,$E0,$45,$40
 	FCB	$00,$00,$00,$00,$80,$0E,$88,$00,$00
-*
-*	OSTRICH
-*	 (RIGHT)
-*
-*AA00FF70580F3F51E81490CD111FA40A670914
-ORUN1R	FDB	$0814!XDMAFIX
+;*
+;*	OSTRICH
+;*	 (RIGHT)
+;*
+;*AA00FF70580F3F51E81490CD111FA40A670914
+ORUN1R	FDB	$0814!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$08,$F8,$00
 	FCB	$00,$00,$00,$00,$00,$0F,$7F,$50
 	FCB	$00,$00,$00,$00,$00,$08,$F0,$00
@@ -1386,9 +1386,9 @@ ORUN1R	FDB	$0814!XDMAFIX
 	FCB	$00,$00,$00,$EF,$80,$00,$00,$00
 	FCB	$00,$00,$00,$EF,$80,$00,$00,$00
 	FCB	$00,$00,$00,$E8,$F8,$00,$00,$00
-*
-*AA00FF70580F3F51E81490CD111FA40A670914
-ORUN2R	FDB	$0814!XDMAFIX
+;*
+;*AA00FF70580F3F51E81490CD111FA40A670914
+ORUN2R	FDB	$0814!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$8F,$80,$00
 	FCB	$00,$00,$00,$00,$00,$F7,$F5,$00
 	FCB	$00,$00,$00,$00,$00,$8F,$00,$00
@@ -1409,9 +1409,9 @@ ORUN2R	FDB	$0814!XDMAFIX
 	FCB	$00,$00,$08,$F0,$00,$08,$80,$00
 	FCB	$00,$00,$08,$F8,$00,$00,$80,$00
 	FCB	$00,$00,$0E,$FF,$00,$00,$00,$00
-*
-*AA00FF70580F3F51E81490CD111EA40A670914
-ORUN3R	FDB	$0814!XDMAFIX
+;*
+;*AA00FF70580F3F51E81490CD111EA40A670914
+ORUN3R	FDB	$0814!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$8F,$80,$00
 	FCB	$00,$00,$00,$00,$00,$F7,$F5,$00
 	FCB	$00,$00,$00,$00,$00,$8F,$00,$00
@@ -1432,9 +1432,9 @@ ORUN3R	FDB	$0814!XDMAFIX
 	FCB	$00,$00,$8F,$00,$00,$08,$FE,$00
 	FCB	$00,$00,$F8,$00,$00,$0E,$88,$00
 	FCB	$00,$00,$FF,$00,$00,$0E,$EF,$00
-*
-*AA00FF70580F3F51E8149018111FA40A670914
-ORUN4R	FDB	$0814!XDMAFIX
+;*
+;*AA00FF70580F3F51E8149018111FA40A670914
+ORUN4R	FDB	$0814!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$08,$F8,$00
 	FCB	$00,$00,$00,$00,$00,$0F,$7F,$50
 	FCB	$00,$00,$00,$00,$00,$08,$F0,$00
@@ -1455,9 +1455,9 @@ ORUN4R	FDB	$0814!XDMAFIX
 	FCB	$00,$0E,$F0,$00,$88,$00,$00,$00
 	FCB	$00,$08,$F0,$00,$EF,$00,$00,$00
 	FCB	$00,$08,$F0,$00,$0F,$F0,$00,$00
-*
-*AA00FF70580F3F51E81490CD111FA40A670911
-ORUNSR	FDB	$0812!XDMAFIX
+;*
+;*AA00FF70580F3F51E81490CD111FA40A670911
+ORUNSR	FDB	$0812!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$0E,$88,$00
 	FCB	$00,$00,$00,$00,$00,$00,$7F,$50
 	FCB	$00,$00,$00,$00,$00,$00,$FF,$00
@@ -1476,10 +1476,10 @@ ORUNSR	FDB	$0812!XDMAFIX
 	FCB	$00,$00,$00,$00,$08,$F8,$F0,$00
 	FCB	$00,$00,$00,$00,$00,$EF,$EF,$00
 	FCB	$00,$00,$00,$00,$00,$0F,$FE,$F0
-*
-*AAFF0A0D78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-OFLY1R	FDB	$090D!XDMAFIX
+;*
+;*AAFF0A0D78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+OFLY1R	FDB	$090D!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$00,$08,$F8,$00
 	FCB	$00,$00,$00,$00,$00,$00,$0F,$7F,$50
 	FCB	$00,$00,$00,$00,$00,$00,$0F,$80,$00
@@ -1493,13 +1493,13 @@ OFLY1R	FDB	$090D!XDMAFIX
 	FCB	$00,$00,$EE,$99,$99,$9E,$00,$00,$00
 	FCB	$00,$00,$E8,$88,$EE,$8E,$00,$00,$00
 	FCB	$00,$00,$00,$00,$00,$E8,$00,$00,$00
-*
-*	AND THE EVER POPULAR COPYRIGHT MESSAGE
-*
+;*
+;*	AND THE EVER POPULAR COPYRIGHT MESSAGE
+;*
 	FCC	'JOUST (C) 1982 WILLIAMS ELECTRONICS INC.'
-*AAFF090D78B074F774F67476F4F67474
-*00FF70580F3F51E81490CD111FA40A67
-OFLY3R	FDB	$090D!XDMAFIX
+;*AAFF090D78B074F774F67476F4F67474
+;*00FF70580F3F51E81490CD111FA40A67
+OFLY3R	FDB	$090D!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$07,$96,$00,$00,$00,$00,$8F,$80,$00
 	FCB	$01,$17,$79,$00,$00,$00,$F7,$F5,$00
 	FCB	$00,$77,$79,$00,$00,$00,$F8,$00,$00
@@ -1513,12 +1513,12 @@ OFLY3R	FDB	$090D!XDMAFIX
 	FCB	$00,$00,$EE,$99,$99,$9E,$00,$00,$00
 	FCB	$00,$00,$E8,$88,$EE,$8E,$00,$00,$00
 	FCB	$00,$00,$00,$00,$00,$E8,$00,$00,$00
-*
-*	OSTRICH
-*	 (LEFT)
-*
-*AA00FF70580F3F51E81490CD111FA40A670914
-ORUN1L	FDB	$0814!XDMAFIX
+;*
+;*	OSTRICH
+;*	 (LEFT)
+;*
+;*AA00FF70580F3F51E81490CD111FA40A670914
+ORUN1L	FDB	$0814!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$8F,$80,$00,$00,$00,$00,$00
 	FCB	$05,$F7,$F0,$00,$00,$00,$00,$00
 	FCB	$00,$0F,$80,$00,$00,$00,$00,$00
@@ -1539,9 +1539,9 @@ ORUN1L	FDB	$0814!XDMAFIX
 	FCB	$00,$00,$00,$08,$FE,$00,$00,$00
 	FCB	$00,$00,$00,$08,$FE,$00,$00,$00
 	FCB	$00,$00,$00,$8F,$8E,$00,$00,$00
-*
-*AA00FF70580F3F51E81490CD111FA40A670914
-ORUN2L	FDB	$0714!XDMAFIX
+;*
+;*AA00FF70580F3F51E81490CD111FA40A670914
+ORUN2L	FDB	$0714!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$08,$F8,$00,$00,$00,$00,$00
 	FCB	$5F,$7F,$00,$00,$00,$00,$00
 	FCB	$00,$F8,$00,$00,$00,$00,$00
@@ -1562,9 +1562,9 @@ ORUN2L	FDB	$0714!XDMAFIX
 	FCB	$08,$80,$00,$0F,$80,$00,$00
 	FCB	$08,$00,$00,$8F,$80,$00,$00
 	FCB	$00,$00,$00,$FF,$E0,$00,$00
-*
-*AA00FF70580F3F51E81490CD111EA40A670914
-ORUN3L	FDB	$0714!XDMAFIX
+;*
+;*AA00FF70580F3F51E81490CD111EA40A670914
+ORUN3L	FDB	$0714!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$08,$F8,$00,$00,$00,$00,$00
 	FCB	$5F,$7F,$00,$00,$00,$00,$00
 	FCB	$00,$F8,$00,$00,$00,$00,$00
@@ -1585,9 +1585,9 @@ ORUN3L	FDB	$0714!XDMAFIX
 	FCB	$EF,$80,$00,$00,$F8,$00,$00
 	FCB	$88,$E0,$00,$00,$8F,$00,$00
 	FCB	$FE,$E0,$00,$00,$FF,$00,$00
-*
-*AA00FF70580F3F51E8149018111FA40A670914
-ORUN4L	FDB	$0814!XDMAFIX
+;*
+;*AA00FF70580F3F51E8149018111FA40A670914
+ORUN4L	FDB	$0814!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$8F,$80,$00,$00,$00,$00,$00
 	FCB	$05,$F7,$F0,$00,$00,$00,$00,$00
 	FCB	$00,$0F,$80,$00,$00,$00,$00,$00
@@ -1608,9 +1608,9 @@ ORUN4L	FDB	$0814!XDMAFIX
 	FCB	$00,$00,$00,$88,$00,$0F,$E0,$00
 	FCB	$00,$00,$00,$FE,$00,$0F,$80,$00
 	FCB	$00,$00,$0F,$F0,$00,$0F,$80,$00
-*
-*AA00FF70580F3F51E81490CD111FA40A670911
-ORUNSL	FDB	$0812!XDMAFIX
+;*
+;*AA00FF70580F3F51E81490CD111FA40A670911
+ORUNSL	FDB	$0812!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$88,$E0,$00,$00,$00,$00,$00
 	FCB	$05,$F7,$00,$00,$00,$00,$00,$00
 	FCB	$00,$FF,$00,$00,$00,$00,$00,$00
@@ -1629,10 +1629,10 @@ ORUNSL	FDB	$0812!XDMAFIX
 	FCB	$00,$0F,$8F,$80,$00,$00,$00,$00
 	FCB	$00,$FE,$FE,$00,$00,$00,$00,$00
 	FCB	$0F,$EF,$F0,$00,$00,$00,$00,$00
-*
-*AAFF0A0D78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-OFLY1L	FDB	$090D!XDMAFIX
+;*
+;*AAFF0A0D78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+OFLY1L	FDB	$090D!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$8F,$80,$00,$00,$00,$00,$00,$00
 	FCB	$05,$F7,$F0,$00,$00,$00,$00,$00,$00
 	FCB	$00,$08,$F0,$00,$00,$00,$00,$00,$00
@@ -1646,9 +1646,9 @@ OFLY1L	FDB	$090D!XDMAFIX
 	FCB	$00,$00,$00,$E9,$99,$99,$EE,$00,$00
 	FCB	$00,$00,$00,$E8,$EE,$88,$8E,$00,$00
 	FCB	$00,$00,$00,$8E,$00,$00,$00,$00,$00
-*AAFF090D78B074F774F67476F4F67474
-*00FF70580F3F51E81490CD111FA40A67
-OFLY3L	FDB	$090D!XDMAFIX
+;*AAFF090D78B074F774F67476F4F67474
+;*00FF70580F3F51E81490CD111FA40A67
+OFLY3L	FDB	$090D!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$08,$F8,$00,$00,$00,$00,$69,$70
 	FCB	$00,$5F,$7F,$00,$00,$00,$97,$71,$10
 	FCB	$00,$00,$8F,$00,$00,$00,$97,$77,$00
@@ -1662,14 +1662,14 @@ OFLY3L	FDB	$090D!XDMAFIX
 	FCB	$00,$00,$00,$E9,$99,$99,$EE,$00,$00
 	FCB	$00,$00,$00,$E8,$EE,$88,$8E,$00,$00
 	FCB	$00,$00,$00,$8E,$00,$00,$00,$00,$00
-*
-*	BUZZARD IMAGES
-*
+;*
+;*	BUZZARD IMAGES
+;*
 BUZARD	EQU	*
 BRSKID	FDB	BSKIDR,$00F4,BRUNSR
 	FDB	BSKIDL,$01F4,BRUNSL
-BRSTND	FDB	BSTNDR,$00F3,BRUN4R	BSTNDR,$00F3,BRUN0R
-	FDB	BSTNDL,$00F3,BRUN4L	BSTNDL,$00F3,BRUN0L
+BRSTND	FDB	BSTNDR,$00F3,BRUN4R	;BSTNDR,$00F3,BRUN0R
+	FDB	BSTNDL,$00F3,BRUN4L	;BSTNDL,$00F3,BRUN0L
 BRRUN1	FDB	BSTNDR,$00F3,BRUN1R
 	FDB	BSTNDL,$00F3,BRUN1L
 BRRUN2	FDB	BSTNDR,$00F3,BRUN2R
@@ -1680,13 +1680,13 @@ BRRUN4	FDB	BSTNDR,$00F3,BRUN4R
 	FDB	BSTNDL,$00F3,BRUN4L
 BRFLAP	FDB	BWNG1R,$00F2,BFLY1R
 	FDB	BWNG1L,$00F2,BFLY1L
-BRFLOP	FDB	BWNG2R,$00ED,BFLY1R	,BFLY2R
-	FDB	BWNG2L,$00ED,BFLY1L	,BFLY2L
+BRFLOP	FDB	BWNG2R,$00ED,BFLY1R	;,BFLY2R
+	FDB	BWNG2L,$00ED,BFLY1L	;,BFLY2L
 BRFLIP	FDB	BWNG3R,$00ED,BFLY3R
 	FDB	BWNG3L,$00ED,BFLY3L
-*
-*	BUZZARDS COLISION DETECT DATA
-*
+;*
+;*	BUZZARDS COLISION DETECT DATA
+;*
 BWNG1R
 BWNG2R
 BWNG3R	FDB	7+COFF,9+COFF
@@ -1703,8 +1703,8 @@ BWNG3R	FDB	7+COFF,9+COFF
 	FDB	5+COFF,12+COFF
 	FDB	5+COFF,13+COFF
 	FDB	$8100,$8100
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
 BWNG1L
 BWNG2L
 BWNG3L	FDB	10+COFF,12+COFF
@@ -1720,10 +1720,10 @@ BWNG3L	FDB	10+COFF,12+COFF
 	FDB	6+COFF,14+COFF
 	FDB	7+COFF,14+COFF
 	FDB	6+COFF,14+COFF
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
-BSKIDR	FDB	$8000,$8000	NO COLISION ON THIS LINE
-	FDB	$8000,$8000	NO COLISION ON THIS LINE
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
+BSKIDR	FDB	$8000,$8000	;NO COLISION ON THIS LINE
+	FDB	$8000,$8000	;NO COLISION ON THIS LINE
 	FDB	7+COFF,9+COFF
 	FDB	7+COFF,9+COFF
 	FDB	7+COFF,8+COFF
@@ -1742,8 +1742,8 @@ BSKIDR	FDB	$8000,$8000	NO COLISION ON THIS LINE
 	FDB	$8100,$8100
 	FDB	$8100,$8100
 	FDB	$8100,$8100
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
 BSTNDR	FDB	7+COFF,9+COFF
 	FDB	7+COFF,9+COFF
 	FDB	7+COFF,8+COFF
@@ -1764,10 +1764,10 @@ BSTNDR	FDB	7+COFF,9+COFF
 	FDB	$8100,$8100
 	FDB	$8100,$8100
 	FDB	$8100,$8100
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
-BSKIDL	FDB	$8000,$8000	NO COLISION ON THIS LINE
-	FDB	$8000,$8000	NO COLISION ON THIS LINE
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
+BSKIDL	FDB	$8000,$8000	;NO COLISION ON THIS LINE
+	FDB	$8000,$8000	;NO COLISION ON THIS LINE
 	FDB	10+COFF,12+COFF
 	FDB	10+COFF,12+COFF
 	FDB	11+COFF,12+COFF
@@ -1786,8 +1786,8 @@ BSKIDL	FDB	$8000,$8000	NO COLISION ON THIS LINE
 	FDB	$8100,$8100
 	FDB	$8100,$8100
 	FDB	$8100,$8100
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
 BSTNDL	FDB	10+COFF,12+COFF
 	FDB	10+COFF,12+COFF
 	FDB	11+COFF,12+COFF
@@ -1808,16 +1808,16 @@ BSTNDL	FDB	10+COFF,12+COFF
 	FDB	$8100,$8100
 	FDB	$8100,$8100
 	FDB	$8100,$8100
-	FDB	$8100,$8100	1 EXTRA END OF POINTER ENTRY
-*
-*	VULTURE IMAGES
-*		 (RIGHT)
-*
-*	BUZZARD RIGHT FACED IMAGES
-*
-*AAFF0A0E78B6FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BRUN1R	FDB	$090E!XDMAFIX
+	FDB	$8100,$8100	;1 EXTRA END OF POINTER ENTRY
+;*
+;*	VULTURE IMAGES
+;*		 (RIGHT)
+;*
+;*	BUZZARD RIGHT FACED IMAGES
+;*
+;*AAFF0A0E78B6FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BRUN1R	FDB	$090E!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$B6,$60,$00,$0F,$F8,$00
 	FCB	$00,$00,$06,$33,$31,$D0,$0F,$55,$50
 	FCB	$00,$00,$6B,$33,$3B,$1B,$0E,$F0,$50
@@ -1832,9 +1832,9 @@ BRUN1R	FDB	$090E!XDMAFIX
 	FCB	$00,$00,$00,$F8,$00,$F0,$00,$00,$00
 	FCB	$00,$00,$00,$8F,$80,$00,$00,$00,$00
 	FCB	$00,$00,$00,$0E,$FF,$E0,$00,$00,$00
-*AAFF090E78B6FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BRUN2R	FDB	$090E!XDMAFIX
+;*AAFF090E78B6FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BRUN2R	FDB	$090E!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$0B,$36,$60,$00,$FF,$80,$00
 	FCB	$00,$00,$6B,$33,$31,$DE,$F5,$55,$00
 	FCB	$00,$06,$B3,$33,$BB,$DE,$EF,$05,$00
@@ -1849,9 +1849,9 @@ BRUN2R	FDB	$090E!XDMAFIX
 	FCB	$00,$00,$0F,$80,$00,$80,$0F,$00,$00
 	FCB	$00,$00,$00,$F8,$00,$00,$00,$00,$00
 	FCB	$00,$00,$00,$EF,$FE,$00,$00,$00,$00
-*AAFF090E78B6FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BRUN3R	FDB	$090E!XDMAFIX
+;*AAFF090E78B6FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BRUN3R	FDB	$090E!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$0B,$36,$60,$00,$FF,$80,$00
 	FCB	$00,$00,$63,$33,$B1,$DE,$F5,$55,$00
 	FCB	$00,$06,$BB,$33,$3D,$DE,$EF,$05,$00
@@ -1866,9 +1866,9 @@ BRUN3R	FDB	$090E!XDMAFIX
 	FCB	$00,$00,$FE,$00,$00,$08,$F0,$00,$00
 	FCB	$00,$00,$8F,$80,$00,$0E,$FF,$00,$00
 	FCB	$00,$00,$EF,$F8,$00,$08,$08,$F0,$00
-*AAFF0A0E78B6FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BRUN4R	FDB	$090E!XDMAFIX
+;*AAFF0A0E78B6FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BRUN4R	FDB	$090E!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$0B,$36,$60,$00,$0F,$F8,$00
 	FCB	$00,$00,$63,$33,$31,$D0,$0F,$55,$50
 	FCB	$00,$06,$B3,$33,$3B,$1C,$0E,$F0,$50
@@ -1883,9 +1883,9 @@ BRUN4R	FDB	$090E!XDMAFIX
 	FCB	$00,$00,$FF,$00,$0F,$00,$00,$00,$00
 	FCB	$00,$0F,$00,$F0,$EF,$FE,$00,$00,$00
 	FCB	$00,$00,$00,$00,$80,$FF,$00,$00,$00
-*AAFF090D78B4FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BRUNSR	FDB	$090D!XDMAFIX
+;*AAFF090D78B4FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BRUNSR	FDB	$090D!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$0B,$22,$36,$00,$0F,$F8,$00,$00
 	FCB	$00,$32,$33,$BB,$B0,$0F,$55,$50,$00
 	FCB	$00,$B0,$30,$66,$6B,$08,$F0,$50,$00
@@ -1899,9 +1899,9 @@ BRUNSR	FDB	$090D!XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$F8,$E8,$00,$00
 	FCB	$00,$00,$00,$00,$00,$0F,$8E,$80,$00
 	FCB	$00,$00,$00,$00,$00,$E8,$EF,$E8,$00
-*AAFF0A0878B5FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BFLY1R	FDB	$0908!XDMAFIX
+;*AAFF0A0878B5FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BFLY1R	FDB	$0908!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$06,$B3,$6B,$60,$00,$00,$00
 	FCB	$00,$00,$62,$63,$36,$B6,$8F,$80,$00
 	FCB	$00,$0B,$32,$36,$6B,$B6,$8F,$55,$00
@@ -1910,9 +1910,9 @@ BFLY1R	FDB	$0908!XDMAFIX
 	FCB	$03,$3B,$0B,$0B,$30,$33,$B3,$B0,$00
 	FCB	$00,$6B,$EE,$E0,$B3,$03,$30,$33,$00
 	FCB	$00,$00,$E8,$8E,$0B,$30,$23,$02,$30
-*AAFF0A0D78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BFLY3R	FDB	$090D!XDMAFIX
+;*AAFF0A0D78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BFLY3R	FDB	$090D!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$03,$03,$B0,$00,$00,$00,$00,$00,$00
 	FCB	$03,$20,$3B,$00,$00,$00,$00,$00,$00
 	FCB	$0B,$33,$BB,$00,$00,$00,$00,$00,$00
@@ -1926,12 +1926,12 @@ BFLY3R	FDB	$090D!XDMAFIX
 	FCB	$03,$B3,$B0,$EE,$BB,$0D,$8E,$00,$00
 	FCB	$0B,$B6,$E8,$8E,$EE,$8E,$00,$00,$00
 	FCB	$00,$60,$E8,$EE,$0E,$00,$80,$00,$00
-*
-*		 (LEFT)
-*
-*AAFF0A0E78B6FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BRUN1L	FDB	$090E!XDMAFIX
+;*
+;*		 (LEFT)
+;*
+;*AAFF0A0E78B6FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BRUN1L	FDB	$090E!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$8F,$F0,$00,$06,$6B,$00,$00,$00
 	FCB	$05,$55,$F0,$0D,$13,$33,$60,$00,$00
 	FCB	$05,$0F,$E0,$B1,$B3,$33,$B6,$00,$00
@@ -1946,9 +1946,9 @@ BRUN1L	FDB	$090E!XDMAFIX
 	FCB	$00,$00,$00,$0F,$00,$8F,$00,$00,$00
 	FCB	$00,$00,$00,$00,$08,$F8,$00,$00,$00
 	FCB	$00,$00,$00,$0E,$FF,$E0,$00,$00,$00
-*AAFF090E78B6FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BRUN2L	FDB	$080E!XDMAFIX
+;*AAFF090E78B6FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BRUN2L	FDB	$080E!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$08,$FF,$00,$06,$63,$B0,$00,$00
 	FCB	$55,$5F,$ED,$13,$33,$B6,$00,$00
 	FCB	$50,$FE,$ED,$BB,$33,$3B,$60,$00
@@ -1963,9 +1963,9 @@ BRUN2L	FDB	$080E!XDMAFIX
 	FCB	$00,$F0,$08,$00,$08,$F0,$00,$00
 	FCB	$00,$00,$00,$00,$8F,$00,$00,$00
 	FCB	$00,$00,$00,$EF,$FE,$00,$00,$00
-*AAFF090E78B6FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BRUN3L	FDB	$080E!XDMAFIX
+;*AAFF090E78B6FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BRUN3L	FDB	$080E!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$08,$FF,$00,$06,$63,$B0,$00,$00
 	FCB	$55,$5F,$ED,$1B,$33,$36,$00,$00
 	FCB	$50,$FE,$ED,$D3,$33,$BB,$60,$00
@@ -1980,9 +1980,9 @@ BRUN3L	FDB	$080E!XDMAFIX
 	FCB	$00,$0F,$80,$00,$00,$EF,$00,$00
 	FCB	$00,$FF,$E0,$00,$08,$F8,$00,$00
 	FCB	$0F,$80,$80,$00,$8F,$FE,$00,$00
-*AAFF0A0E78B6FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BRUN4L	FDB	$090E!XDMAFIX
+;*AAFF0A0E78B6FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BRUN4L	FDB	$090E!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$8F,$F0,$00,$06,$63,$B0,$00,$00
 	FCB	$05,$55,$F0,$0D,$13,$33,$36,$00,$00
 	FCB	$05,$0F,$E0,$C1,$B3,$33,$3B,$60,$00
@@ -1997,9 +1997,9 @@ BRUN4L	FDB	$090E!XDMAFIX
 	FCB	$00,$00,$00,$00,$F0,$00,$FF,$00,$00
 	FCB	$00,$00,$00,$EF,$FE,$0F,$00,$F0,$00
 	FCB	$00,$00,$00,$FF,$08,$00,$00,$00,$00
-*AAFF090D78B4FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BRUNSL	FDB	$080D!XDMAFIX
+;*AAFF090D78B4FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BRUNSL	FDB	$080D!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$8F,$F0,$00,$63,$22,$B0,$00
 	FCB	$05,$55,$F0,$0B,$BB,$33,$23,$00
 	FCB	$05,$0F,$80,$B6,$66,$03,$0B,$00
@@ -2013,9 +2013,9 @@ BRUNSL	FDB	$080D!XDMAFIX
 	FCB	$00,$8E,$8F,$00,$00,$00,$00,$00
 	FCB	$08,$E8,$F0,$00,$00,$00,$00,$00
 	FCB	$8E,$FE,$8E,$00,$00,$00,$00,$00
-*AAFF0A0878B5FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BFLY1L	FDB	$0908!XDMAFIX
+;*AAFF0A0878B5FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BFLY1L	FDB	$0908!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$06,$B6,$3B,$60,$00,$00
 	FCB	$00,$08,$F8,$6B,$63,$36,$26,$00,$00
 	FCB	$00,$55,$F8,$6B,$B6,$63,$23,$B0,$00
@@ -2024,9 +2024,9 @@ BFLY1L	FDB	$0908!XDMAFIX
 	FCB	$00,$0B,$3B,$33,$03,$B0,$B0,$B3,$30
 	FCB	$00,$33,$03,$30,$3B,$0E,$EE,$B6,$00
 	FCB	$03,$20,$32,$03,$B0,$E8,$8E,$00,$00
-*AAFF0A0D78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E81490CD111FA40A67
-BFLY3L	FDB	$090D!XDMAFIX
+;*AAFF0A0D78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E81490CD111FA40A67
+BFLY3L	FDB	$090D!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$00,$0B,$30,$30
 	FCB	$00,$00,$00,$00,$00,$00,$B3,$02,$30
 	FCB	$00,$00,$00,$00,$00,$00,$BB,$33,$B0
@@ -2040,18 +2040,18 @@ BFLY3L	FDB	$090D!XDMAFIX
 	FCB	$00,$00,$E8,$D0,$BB,$EE,$0B,$3B,$30
 	FCB	$00,$00,$00,$E8,$EE,$E8,$8E,$6B,$B0
 	FCB	$00,$00,$08,$00,$E0,$EE,$8E,$06,$00
-*
-*	PLAYER 1'S POINTERS
-*
-PLYR1	FDB	0,$02EF,PLY1R	RIDER ON SKIDDING HORSE
+;*
+;*	PLAYER 1'S POINTERS
+;*
+PLYR1	FDB	0,$02EF,PLY1R	;RIDER ON SKIDDING HORSE
 	FDB	0,$00EF,PLY1L
-	FDB	0,$02ED,PLY1R	RIDER NORMALLY ON HORSE
+	FDB	0,$02ED,PLY1R	;RIDER NORMALLY ON HORSE
 	FDB	0,$00ED,PLY1L
-*
-*
-*	RIDER FACEING RIGHT SIDE
-*
-PLY1R	FDB	$0707!XDMAFIX
+;*
+;*
+;*	RIDER FACEING RIGHT SIDE
+;*
+PLY1R	FDB	$0707!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$55,$50,$00,$00,$00,$00
 	FCB	$00,$57,$70,$00,$00,$00,$00
 	FCB	$00,$55,$00,$00,$00,$00,$00
@@ -2059,10 +2059,10 @@ PLY1R	FDB	$0707!XDMAFIX
 	FCB	$05,$55,$55,$75,$55,$55,$50
 	FCB	$05,$55,$55,$00,$00,$00,$00
 	FCB	$00,$55,$55,$50,$00,$00,$00
-*
-*	RIDER FACEING LEFT SIDE
-*
-PLY1L	FDB	$0707!XDMAFIX
+;*
+;*	RIDER FACEING LEFT SIDE
+;*
+PLY1L	FDB	$0707!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$05,$55,$00
 	FCB	$00,$00,$00,$00,$07,$75,$00
 	FCB	$00,$00,$00,$00,$00,$55,$00
@@ -2070,17 +2070,17 @@ PLY1L	FDB	$0707!XDMAFIX
 	FCB	$05,$55,$55,$57,$55,$55,$50
 	FCB	$00,$00,$00,$00,$55,$55,$50
 	FCB	$00,$00,$00,$05,$55,$55,$00
-*
-*	PLAYER 2'S POINTERS
-*
-PLYR2	FDB	0,$02EF,PLY2R	RIDER ON SKIDDING HORSE
+;*
+;*	PLAYER 2'S POINTERS
+;*
+PLYR2	FDB	0,$02EF,PLY2R	;RIDER ON SKIDDING HORSE
 	FDB	0,$00EF,PLY2L
-	FDB	0,$02ED,PLY2R	RIDER NORMALLY ON HORSE
+	FDB	0,$02ED,PLY2R	;RIDER NORMALLY ON HORSE
 	FDB	0,$00ED,PLY2L
-*
-*	RIDER FACEING RIGHT
-*
-PLY2R	FDB	$0707!XDMAFIX
+;*
+;*	RIDER FACEING RIGHT
+;*
+PLY2R	FDB	$0707!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$77,$70,$00,$00,$00,$00
 	FCB	$00,$75,$50,$00,$00,$00,$00
 	FCB	$00,$77,$00,$00,$00,$00,$00
@@ -2088,10 +2088,10 @@ PLY2R	FDB	$0707!XDMAFIX
 	FCB	$07,$77,$77,$57,$77,$77,$70
 	FCB	$07,$77,$77,$00,$00,$00,$00
 	FCB	$00,$77,$77,$70,$00,$00,$00
-*
-*	RIDER FACEING LEFT SIDE
-*
-PLY2L	FDB	$0707!XDMAFIX
+;*
+;*	RIDER FACEING LEFT SIDE
+;*
+PLY2L	FDB	$0707!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$07,$77,$00
 	FCB	$00,$00,$00,$00,$05,$57,$00
 	FCB	$00,$00,$00,$00,$00,$77,$00
@@ -2099,19 +2099,19 @@ PLY2L	FDB	$0707!XDMAFIX
 	FCB	$07,$77,$77,$75,$77,$77,$70
 	FCB	$00,$00,$00,$00,$77,$77,$70
 	FCB	$00,$00,$00,$07,$77,$77,$00
-*
-*
-*	PL7YER 3'S POINTERS
-*
-PLYR3	FDB	0,$02EF,PLY3R	RIDER ON SKIDDING HORSE
+;*
+;*
+;*	PL7YER 3'S POINTERS
+;*
+PLYR3	FDB	0,$02EF,PLY3R	;RIDER ON SKIDDING HORSE
 	FDB	0,$00EF,PLY3L
-	FDB	0,$02ED,PLY3R	RIDER NORMALLY ON HORSE
+	FDB	0,$02ED,PLY3R	;RIDER NORMALLY ON HORSE
 	FDB	0,$00ED,PLY3L
 	FDB	CEGGMN,$00F5,PLY3S
-*
-*	RIDER FACEING RIGHT SIDE
-*
-PLY3R	FDB	$0707!XDMAFIX
+;*
+;*	RIDER FACEING RIGHT SIDE
+;*
+PLY3R	FDB	$0707!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$44,$40,$00,$00,$00,$00
 	FCB	$00,$49,$90,$00,$00,$00,$00
 	FCB	$00,$44,$00,$00,$00,$00,$00
@@ -2119,10 +2119,10 @@ PLY3R	FDB	$0707!XDMAFIX
 	FCB	$04,$41,$11,$11,$11,$11,$10
 	FCB	$04,$44,$44,$00,$00,$00,$00
 	FCB	$00,$44,$44,$40,$00,$00,$00
-*
-*	RIDER FACEING LEFT SIDE
-*
-PLY3L	FDB	$0707!XDMAFIX
+;*
+;*	RIDER FACEING LEFT SIDE
+;*
+PLY3L	FDB	$0707!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$04,$44,$00
 	FCB	$00,$00,$00,$00,$09,$94,$00
 	FCB	$00,$00,$00,$00,$00,$44,$00
@@ -2130,12 +2130,12 @@ PLY3L	FDB	$0707!XDMAFIX
 	FCB	$01,$11,$11,$11,$11,$14,$40
 	FCB	$00,$00,$00,$00,$44,$44,$40
 	FCB	$00,$00,$00,$04,$44,$44,$00
-*
-*	RIDER STANDING (LEFT & RIGHT)
-*
-*AAFF050C78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-PLY3S	FDB	$050C!XDMAFIX
+;*
+;*	RIDER STANDING (LEFT & RIGHT)
+;*
+;*AAFF050C78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+PLY3S	FDB	$050C!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$01,$00
 	FCB	$00,$E4,$4E,$01,$00
 	FCB	$00,$49,$9E,$01,$00
@@ -2148,19 +2148,19 @@ PLY3S	FDB	$050C!XDMAFIX
 	FCB	$0E,$4E,$E4,$61,$00
 	FCB	$08,$80,$04,$81,$00
 	FCB	$88,$80,$E8,$81,$00
-*
-*
-*	PLAYER 4'S POINTERS
-*
-PLYR4	FDB	0,$02EF,PLY4R	RIDER ON SKIDDING HORSE
+;*
+;*
+;*	PLAYER 4'S POINTERS
+;*
+PLYR4	FDB	0,$02EF,PLY4R	;RIDER ON SKIDDING HORSE
 	FDB	0,$00EF,PLY4L
-	FDB	0,$02ED,PLY4R	RIDER NORMALLY ON HORSE
+	FDB	0,$02ED,PLY4R	;RIDER NORMALLY ON HORSE
 	FDB	0,$00ED,PLY4L
 	FDB	CEGGMN,$00F5,PLY4S
-*
-*	RIDER FACEING RIGHT SIDE
-*
-PLY4R	FDB	$0707!XDMAFIX
+;*
+;*	RIDER FACEING RIGHT SIDE
+;*
+PLY4R	FDB	$0707!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$DD,$D0,$00,$00,$00,$00
 	FCB	$00,$D4,$40,$00,$00,$00,$00
 	FCB	$00,$DD,$00,$00,$00,$00,$00
@@ -2168,14 +2168,14 @@ PLY4R	FDB	$0707!XDMAFIX
 	FCB	$0D,$D1,$11,$11,$11,$11,$10
 	FCB	$0D,$DD,$DD,$00,$00,$00,$00
 	FCB	$00,$DD,$DD,$D0,$00,$00,$00
-*
-*	AND THE EVER POPULAR COPYRIGHT MESSAGE
-*
+;*
+;*	AND THE EVER POPULAR COPYRIGHT MESSAGE
+;*
 	FCC	'JOUST (C) 1982 WILLIAMS ELECTRONICS INC.'
-*
-*	RIDER FACEING LEFT SIDE
-*
-PLY4L	FDB	$0707!XDMAFIX
+;*
+;*	RIDER FACEING LEFT SIDE
+;*
+PLY4L	FDB	$0707!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$0D,$DD,$00
 	FCB	$00,$00,$00,$00,$04,$4D,$00
 	FCB	$00,$00,$00,$00,$00,$DD,$00
@@ -2183,12 +2183,12 @@ PLY4L	FDB	$0707!XDMAFIX
 	FCB	$01,$11,$11,$11,$11,$1D,$D0
 	FCB	$00,$00,$00,$00,$DD,$DD,$D0
 	FCB	$00,$00,$00,$0D,$DD,$DD,$00
-*
-*	PLAYER STANDING (LEFT & RIGHT)
-*
-*AAFF040C7DB0FFF4FFF4FFF4FFF4FFF4
-*00FF704D0F3F41ED14904D111FA40A67
-PLY4S	FDB	$050C!XDMAFIX
+;*
+;*	PLAYER STANDING (LEFT & RIGHT)
+;*
+;*AAFF040C7DB0FFF4FFF4FFF4FFF4FFF4
+;*00FF704D0F3F41ED14904D111FA40A67
+PLY4S	FDB	$050C!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$01,$00
 	FCB	$00,$9D,$D9,$01,$00
 	FCB	$00,$D4,$4E,$01,$00
@@ -2201,19 +2201,19 @@ PLY4S	FDB	$050C!XDMAFIX
 	FCB	$09,$DE,$ED,$61,$00
 	FCB	$03,$30,$0D,$31,$00
 	FCB	$33,$30,$93,$31,$00
-*
-*
-*	PLAYER 5'S POINTERS
-*
-PLYR5	FDB	0,$02EF,PLY5R	RIDER ON SKIDDING HORSE
+;*
+;*
+;*	PLAYER 5'S POINTERS
+;*
+PLYR5	FDB	0,$02EF,PLY5R	;RIDER ON SKIDDING HORSE
 	FDB	0,$00EF,PLY5L
-	FDB	0,$02ED,PLY5R	RIDER NORMALLY ON HORSE
+	FDB	0,$02ED,PLY5R	;RIDER NORMALLY ON HORSE
 	FDB	0,$00ED,PLY5L
 	FDB	CEGGMN,$00F5,PLY5S
-*
-*	RIDER FACEING RIGHT SIDE
-*
-PLY5R	FDB	$0707!XDMAFIX
+;*
+;*	RIDER FACEING RIGHT SIDE
+;*
+PLY5R	FDB	$0707!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$99,$90,$00,$00,$00,$00
 	FCB	$00,$95,$50,$00,$00,$00,$00
 	FCB	$00,$99,$00,$00,$00,$00,$00
@@ -2221,10 +2221,10 @@ PLY5R	FDB	$0707!XDMAFIX
 	FCB	$09,$91,$11,$11,$11,$11,$10
 	FCB	$09,$99,$99,$00,$00,$00,$00
 	FCB	$00,$99,$99,$90,$00,$00,$00
-*
-*	RIDER FACEING LEFT SIDE
-*
-PLY5L	FDB	$0707!XDMAFIX
+;*
+;*	RIDER FACEING LEFT SIDE
+;*
+PLY5L	FDB	$0707!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$09,$99,$00
 	FCB	$00,$00,$00,$00,$05,$59,$00
 	FCB	$00,$00,$00,$00,$00,$99,$00
@@ -2232,11 +2232,11 @@ PLY5L	FDB	$0707!XDMAFIX
 	FCB	$01,$11,$11,$11,$11,$19,$90
 	FCB	$00,$00,$00,$00,$99,$99,$90
 	FCB	$00,$00,$00,$09,$99,$99,$00
-*
-*	RIDER STANDING (LEFT & RIGHT)
-*AAFF050C78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-PLY5S	FDB	$050C!XDMAFIX
+;*
+;*	RIDER STANDING (LEFT & RIGHT)
+;*AAFF050C78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+PLY5S	FDB	$050C!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$01,$00
 	FCB	$00,$E9,$9E,$01,$00
 	FCB	$00,$95,$5E,$01,$00
@@ -2249,9 +2249,9 @@ PLY5S	FDB	$050C!XDMAFIX
 	FCB	$0E,$9E,$E9,$61,$00
 	FCB	$03,$30,$09,$31,$00
 	FCB	$33,$30,$E3,$31,$00
-*
-*	EGG STILLS & HATCHING
-*
+;*
+;*	EGG STILLS & HATCHING
+;*
 EGGI	FDB	CEGGUP,$00FA,EGGUP
 	FDB	CEGGLF,$00FB,EGGLF
 	FDB	CEGGRT,$00FB,EGGRT
@@ -2259,7 +2259,7 @@ EGGI	FDB	CEGGUP,$00FA,EGGUP
 	FDB	CEGGMN,$FFF6,EGGB2
 	FDB	CEGGMN,$FEF5,EGGB3
 	FDB	CEGGMN,$00F5,PLY4S
-*
+;*
 CEGGUP
 	FDB	3+COFF,6+COFF
 	FDB	2+COFF,7+COFF
@@ -2286,7 +2286,7 @@ CEGGRT
 	FDB	1+COFF,7+COFF
 	FDB	1+COFF,6+COFF
 	FDB	2+COFF,5+COFF
-	FDB	$8100,$8100	ENDING TERMINATOR
+	FDB	$8100,$8100	;ENDING TERMINATOR
 CEGGMN
 	FDB	3+COFF,6+COFF
 	FDB	3+COFF,6+COFF
@@ -2299,14 +2299,14 @@ CEGGMN
 	FDB	3+COFF,6+COFF
 	FDB	2+COFF,7+COFF
 	FDB	1+COFF,8+COFF
-	FDB	$8100,$8100	ENDING TERMINATOR
-*
-*
-*	EGG FALLING SEQUENCE
-*
-*AAFF050778B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-EGGUP	FDB	$0407!XDMAFIX
+	FDB	$8100,$8100	;ENDING TERMINATOR
+;*
+;*
+;*	EGG FALLING SEQUENCE
+;*
+;*AAFF050778B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+EGGUP	FDB	$0407!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$B2,$2B,$00
 	FCB	$0B,$21,$12,$B0
 	FCB	$02,$11,$11,$20
@@ -2314,36 +2314,36 @@ EGGUP	FDB	$0407!XDMAFIX
 	FCB	$02,$51,$55,$20
 	FCB	$03,$25,$52,$30
 	FCB	$00,$32,$23,$00
-*AAFF050678B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-EGGRT	FDB	$0406!XDMAFIX
+;*AAFF050678B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+EGGRT	FDB	$0406!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$25,$52,$00
 	FCB	$02,$51,$15,$B0
 	FCB	$32,$11,$11,$30
 	FCB	$35,$11,$52,$B0
 	FCB	$B2,$55,$23,$00
 	FCB	$0B,$33,$30,$00
-*AAFF050678B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-EGGLF	FDB	$0406!XDMAFIX
+;*AAFF050678B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+EGGLF	FDB	$0406!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$02,$55,$20,$00
 	FCB	$B5,$11,$52,$00
 	FCB	$31,$11,$12,$30
 	FCB	$B2,$51,$15,$30
 	FCB	$03,$25,$52,$B0
 	FCB	$00,$33,$3B,$00
-*AAFF060678B074F774F67476F4F67474
-*00FF70580F3F51E814905D111FA40A67
-EGGB1	FDB	$0506!XDMAFIX
+;*AAFF060678B074F774F67476F4F67474
+;*00FF70580F3F51E814905D111FA40A67
+EGGB1	FDB	$0506!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$02,$00,$63,$53,$00
 	FCB	$25,$36,$4E,$52,$30
 	FCB	$51,$5E,$63,$51,$30
 	FCB	$21,$52,$E2,$15,$30
 	FCB	$32,$12,$35,$22,$00
 	FCB	$0B,$22,$32,$3B,$00
-*AAFF080B78B074F774F67476F4F67474
-*00FF70580F3F51E814905D111FA40A67
-EGGB2	FDB	$080B!XDMAFIX
+;*AAFF080B78B074F774F67476F4F67474
+;*00FF70580F3F51E814905D111FA40A67
+EGGB2	FDB	$080B!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$63,$36,$00,$00,$00,$00
 	FCB	$00,$00,$B6,$46,$00,$00,$00,$00
 	FCB	$55,$00,$B3,$3E,$00,$00,$00,$00
@@ -2355,9 +2355,9 @@ EGGB2	FDB	$080B!XDMAFIX
 	FCB	$01,$15,$36,$E0,$00,$00,$05,$00
 	FCB	$02,$11,$23,$E0,$21,$03,$11,$00
 	FCB	$00,$22,$22,$E2,$12,$33,$23,$00
-*AAFF0A0C78B074F774F67476F4F67474
-*00FF70580F3F51E814905D111FA40A67
-EGGB3	FDB	$0A0C!XDMAFIX
+;*AAFF0A0C78B074F774F67476F4F67474
+;*00FF70580F3F51E814905D111FA40A67
+EGGB3	FDB	$0A0C!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$01,$00,$00,$00,$00
 	FCB	$15,$00,$00,$6D,$D6,$01,$00,$00,$00,$00
 	FCB	$32,$00,$00,$34,$43,$01,$00,$00,$05,$00
@@ -2370,9 +2370,9 @@ EGGB3	FDB	$0A0C!XDMAFIX
 	FCB	$00,$00,$03,$3E,$E2,$61,$00,$00,$12,$00
 	FCB	$00,$00,$03,$30,$03,$31,$00,$00,$00,$00
 	FCB	$00,$00,$33,$30,$E3,$31,$00,$00,$00,$00
-*
-*	LAVA TROLL GRABBING HAND
-*
+;*
+;*	LAVA TROLL GRABBING HAND
+;*
 ILAVAT	FDB	0,$00FB,GRAB1
 	FDB	0,$00F8,GRAB2
 	FDB	0,$00F8,GRAB3
@@ -2380,21 +2380,21 @@ ILAVAT	FDB	0,$00FB,GRAB1
 	FDB	0,$00F0,GRAB5
 	FDB	0,$00EF,GRAB6
 
-*
-*	LAVA TROOL HAND SEQUENCES
-*
-*AAFF040678B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-GRAB1	FDB	$0306!XDMAFIX
+;*
+;*	LAVA TROOL HAND SEQUENCES
+;*
+;*AAFF040678B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+GRAB1	FDB	$0306!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$44,$8E,$00
 	FCB	$0E,$44,$E0
 	FCB	$00,$04,$80
 	FCB	$00,$0E,$40
 	FCB	$00,$00,$40
 	FCB	$00,$00,$40
-*AAFF040978B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-GRAB2	FDB	$0409!XDMAFIX
+;*AAFF040978B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+GRAB2	FDB	$0409!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$0C,$00
 	FCB	$00,$00,$E4,$00
 	FCB	$00,$00,$44,$00
@@ -2404,9 +2404,9 @@ GRAB2	FDB	$0409!XDMAFIX
 	FCB	$44,$E0,$00,$00
 	FCB	$48,$00,$00,$00
 	FCB	$4E,$00,$00,$00
-*AAFF070978B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-GRAB3	FDB	$0609!XDMAFIX
+;*AAFF070978B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+GRAB3	FDB	$0609!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$40,$04,$00
 	FCB	$00,$04,$00,$40,$04,$E0
 	FCB	$00,$04,$0E,$40,$E4,$E0
@@ -2416,9 +2416,9 @@ GRAB3	FDB	$0609!XDMAFIX
 	FCB	$00,$4A,$A4,$E0,$00,$00
 	FCB	$04,$A8,$E0,$00,$00,$00
 	FCB	$4E,$00,$00,$00,$00,$00
-*AAFF070F78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-GRAB4	FDB	$060F!XDMAFIX
+;*AAFF070F78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+GRAB4	FDB	$060F!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$A0,$00,$80,$00
 	FCB	$00,$00,$A0,$0E,$A0,$00
 	FCB	$08,$00,$A8,$0A,$80,$00
@@ -2434,9 +2434,9 @@ GRAB4	FDB	$060F!XDMAFIX
 	FCB	$0E,$44,$E0,$00,$00,$00
 	FCB	$E4,$4E,$00,$00,$00,$00
 	FCB	$4E,$00,$00,$00,$00,$00
-*AAFF081178B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-GRAB5	FDB	$0711!XDMAFIX
+;*AAFF081178B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+GRAB5	FDB	$0711!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$80,$00,$00,$00
 	FCB	$00,$00,$0E,$80,$0A,$00,$00
 	FCB	$00,$00,$0E,$E0,$8E,$0E,$E0
@@ -2454,9 +2454,9 @@ GRAB5	FDB	$0711!XDMAFIX
 	FCB	$E4,$C4,$CE,$00,$00,$00,$00
 	FCB	$84,$48,$E0,$00,$00,$00,$00
 	FCB	$48,$E0,$00,$00,$00,$00,$00
-*AAFF081278B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-GRAB6	FDB	$0712!XDMAFIX
+;*AAFF081278B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+GRAB6	FDB	$0712!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$AA,$F0,$00
 	FCB	$00,$00,$00,$8A,$88,$E8,$80
 	FCB	$00,$00,$0E,$F8,$EA,$EA,$A0
@@ -2475,19 +2475,19 @@ GRAB6	FDB	$0712!XDMAFIX
 	FCB	$00,$48,$00,$00,$00,$00,$00
 	FCB	$04,$4E,$00,$00,$00,$00,$00
 	FCB	$48,$E0,$00,$00,$00,$00,$00
-*
-*	LAVA FLAME
-*
+;*
+;*	LAVA FLAME
+;*
 IFLAME	FDB	0,$00F2,FLAME1
 	FDB	0,$00F1,FLAME2
 	FDB	0,$00F1,FLAME3
 	FDB	0,$00F5,FLAME4
-*
-*	FLAME SEQUENCES
-*
-*AAFF050F78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-FLAME1	FDB	$040F!XDMAFIX
+;*
+;*	FLAME SEQUENCES
+;*
+;*AAFF050F78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+FLAME1	FDB	$040F!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$40,$00
 	FCB	$00,$0E,$44,$00
 	FCB	$00,$04,$C4,$00
@@ -2503,9 +2503,9 @@ FLAME1	FDB	$040F!XDMAFIX
 	FCB	$00,$8C,$5A,$E0
 	FCB	$0E,$CA,$55,$C0
 	FCB	$E4,$A5,$55,$A0
-*AAFF041078B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-FLAME2	FDB	$0410!XDMAFIX
+;*AAFF041078B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+FLAME2	FDB	$0410!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$0E,$4E,$00
 	FCB	$00,$0E,$44,$00
 	FCB	$00,$00,$4A,$00
@@ -2522,9 +2522,9 @@ FLAME2	FDB	$0410!XDMAFIX
 	FCB	$0E,$C5,$5C,$00
 	FCB	$08,$A5,$5C,$00
 	FCB	$4A,$55,$5A,$00
-*AAFF051078B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-FLAME3	FDB	$0510!XDMAFIX
+;*AAFF051078B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+FLAME3	FDB	$0510!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$4E,$00
 	FCB	$00,$00,$00,$E4,$00
 	FCB	$00,$00,$00,$00,$00
@@ -2541,9 +2541,9 @@ FLAME3	FDB	$0510!XDMAFIX
 	FCB	$05,$55,$A8,$00,$00
 	FCB	$05,$55,$A8,$00,$00
 	FCB	$4A,$55,$A8,$00,$00
-*AAFF040C78B0FFF4FFF4FFF4FFF4FFF4
-*00FF70580F3F51E814905D111FA40A67
-FLAME4	FDB	$040C!XDMAFIX
+;*AAFF040C78B0FFF4FFF4FFF4FFF4FFF4
+;*00FF70580F3F51E814905D111FA40A67
+FLAME4	FDB	$040C!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$04,$00
 	FCB	$00,$04,$44,$00
 	FCB	$00,$4C,$48,$00
@@ -2556,23 +2556,23 @@ FLAME4	FDB	$040C!XDMAFIX
 	FCB	$4A,$5C,$E0,$00
 	FCB	$45,$55,$A0,$00
 	FCB	$4A,$55,$AE,$00
-*
-*******************************************************************************
-*	PLAYER DEATH POOF IMAGES
-*	 FROM KEN LANTZ
-*
+;*
+;*******************************************************************************
+;*	PLAYER DEATH POOF IMAGES
+;*	 FROM KEN LANTZ
+;*
 POOF1	POSOFF	0,$01,$18,FL1
 POOF2	POSOFF	0,$01,$1E,FL2
 POOF3	POSOFF	0,$00,$23,FL3
-*
-FL1	FDB	$0305!XDMAFIX
+;*
+FL1	FDB	$0305!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$04,$00
 	FCB	$00,$44,$40
 	FCB	$04,$41,$44
 	FCB	$00,$44,$40
 	FCB	$00,$04,$00
-*
-FL2	FDB	$0509!XDMAFIX
+;*
+FL2	FDB	$0509!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$70,$00,$00
 	FCB	$07,$00,$70,$07,$00
 	FCB	$00,$70,$00,$70,$00
@@ -2582,8 +2582,8 @@ FL2	FDB	$0509!XDMAFIX
 	FCB	$00,$70,$00,$70,$00
 	FCB	$07,$00,$70,$07,$00
 	FCB	$00,$00,$70,$00,$00
-*
-FL3	FDB	$060B!XDMAFIX
+;*
+FL3	FDB	$060B!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$07,$00,$07,$00,$00
 	FCB	$00,$00,$07,$00,$00,$00
 	FCB	$07,$00,$00,$00,$07,$00
@@ -2595,16 +2595,16 @@ FL3	FDB	$060B!XDMAFIX
 	FCB	$07,$00,$00,$00,$07,$00
 	FCB	$00,$00,$07,$00,$00,$00
 	FCB	$00,$07,$00,$07,$00,$00
-*
-*	PTERODACTYL, FLYING ONLY IMAGES
-*
+;*
+;*	PTERODACTYL, FLYING ONLY IMAGES
+;*
 IPTERO	POSOFF	PT1RC,1,11,PT1R
 	POSOFF	PT1LC,1,11,PT1L
 	POSOFF	PT2RC,1,07,PT2R
 	POSOFF	PT2LC,0,07,PT2L
 	POSOFF	PT3RC,0,10,PT3R
 	POSOFF	PT3LC,0,10,PT3L
-*
+;*
 PT1RC	FDB	$8000,$8000
 	FDB	$8000,$8000
 	FDB	$8000,$8000
@@ -2617,8 +2617,8 @@ PT1RC	FDB	$8000,$8000
 	FDB	8+COFF,15+COFF
 	FDB	$8100,$8100
 	FDB	$8100,$8100
-	FDB	$8100,$8100		TERMINATING POINTER
-*
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
 PT2RC	FDB	$8000,$8000
 	FDB	$8000,$8000
 	FDB	$8000,$8000
@@ -2631,8 +2631,8 @@ PT2RC	FDB	$8000,$8000
 	FDB	5+COFF,21+COFF
 	FDB	3+COFF,7+COFF
 	FDB	$8100,$8100
-	FDB	$8100,$8100		TERMINATING POINTER
-*
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
 PT3RC	FDB	$8000,$8000
 	FDB	27+COFF,28+COFF
 	FDB	23+COFF,27+COFF
@@ -2645,8 +2645,8 @@ PT3RC	FDB	$8000,$8000
 	FDB	8+COFF,16+COFF
 	FDB	5+COFF,12+COFF
 	FDB	$8100,$8100
-	FDB	$8100,$8100		TERMINATING POINTER
-*
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
 PT1LC	FDB	$8000,$8000
 	FDB	$8000,$8000
 	FDB	$8000,$8000
@@ -2659,8 +2659,8 @@ PT1LC	FDB	$8000,$8000
 	FDB	14+COFF,21+COFF
 	FDB	$8100,$8100
 	FDB	$8100,$8100
-	FDB	$8100,$8100		TERMINATING POINTER
-*
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
 PT2LC	FDB	$8000,$8000
 	FDB	$8000,$8000
 	FDB	$8000,$8000
@@ -2673,8 +2673,8 @@ PT2LC	FDB	$8000,$8000
 	FDB	12+COFF,24+COFF
 	FDB	22+COFF,26+COFF
 	FDB	$8100,$8100
-	FDB	$8100,$8100		TERMINATING POINTER
-*
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
 PT3LC	FDB	$8000,$8000
 	FDB	1+COFF,2+COFF
 	FDB	2+COFF,6+COFF
@@ -2687,11 +2687,11 @@ PT3LC	FDB	$8000,$8000
 	FDB	13+COFF,21+COFF
 	FDB	17+COFF,24+COFF
 	FDB	$8100,$8100
-	FDB	$8100,$8100		TERMINATING POINTER
-*
-*AAFF0E0E80C2FF00FF40FF00FF00FF00
-*00FF70580F3F51E814905D111FA40A67
-PT1R	FDB	$0D0A!XDMAFIX
+	FDB	$8100,$8100		;TERMINATING POINTER
+;*
+;*AAFF0E0E80C2FF00FF40FF00FF00FF00
+;*00FF70580F3F51E814905D111FA40A67
+PT1R	FDB	$0D0A!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$99,$99,$F6,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 	FCB	$00,$09,$44,$F7,$90,$00,$00,$00,$00,$00,$00,$00,$00
 	FCB	$00,$00,$00,$44,$CF,$79,$00,$00,$00,$00,$00,$00,$00
@@ -2702,11 +2702,11 @@ PT1R	FDB	$0D0A!XDMAFIX
 	FCB	$99,$64,$8C,$FF,$CC,$C5,$FF,$CA,$88,$FF,$DD,$00,$00
 	FCB	$00,$99,$44,$CD,$FF,$88,$4F,$FC,$34,$E0,$00,$00,$00
 	FCB	$00,$00,$09,$44,$48,$86,$E0,$00,$00,$00,$00,$00,$00
-*
-*AAFF0E077FCBFF00FF40FF00FF00FF00
-*00FF70580F3F51E814905D111FA40A67
-*
-PT2R	FDB	$0D07!XDMAFIX
+;*
+;*AAFF0E077FCBFF00FF40FF00FF00FF00
+;*00FF70580F3F51E814905D111FA40A67
+;*
+PT2R	FDB	$0D07!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$0D,$1F,$FD,$00,$00
 	FCB	$00,$00,$00,$06,$36,$9F,$F1,$90,$00,$04,$00,$11,$10
 	FCB	$00,$00,$69,$94,$9F,$FC,$F9,$A0,$00,$EC,$8F,$80,$00
@@ -2714,11 +2714,11 @@ PT2R	FDB	$0D07!XDMAFIX
 	FCB	$00,$00,$94,$FC,$99,$6E,$98,$AD,$CF,$8E,$00,$ED,$00
 	FCB	$00,$94,$DD,$66,$0E,$E6,$88,$E0,$00,$00,$00,$00,$00
 	FCB	$94,$F4,$90,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-*
-*AAFF0F0B7FC8FF00FF40FF00FF00FF00
-*00FF70580F3F51E814905D111FA40A67
-*
-PT3R	FDB	$0F0B!XDMAFIX
+;*
+;*AAFF0F0B7FC8FF00FF40FF00FF00FF00
+;*00FF70580F3F51E814905D111FA40A67
+;*
+PT3R	FDB	$0F0B!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$8F,$00
 	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$FD,$ED,$10,$00
 	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$0F,$00,$DF,$00,$00
@@ -2730,10 +2730,10 @@ PT3R	FDB	$0F0B!XDMAFIX
 	FCB	$00,$00,$00,$06,$4C,$78,$66,$8E,$00,$00,$00,$00,$00,$00,$00
 	FCB	$00,$00,$99,$4C,$AA,$F7,$00,$00,$00,$00,$00,$00,$00,$00,$00
 	FCB	$99,$44,$CA,$AA,$FF,$D7,$D0,$00,$00,$00,$00,$00,$00,$00,$00
-*
-*AAFF0E0E80C2FF00FF40FF00FF00FF00
-*00FF70580F3F51E814905D111FA40A67
-PT1L	FDB	$0D0A!XDMAFIX
+;*
+;*AAFF0E0E80C2FF00FF40FF00FF00FF00
+;*00FF70580F3F51E814905D111FA40A67
+PT1L	FDB	$0D0A!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$6F,$99,$99,$00
 	FCB	$00,$00,$00,$00,$00,$00,$00,$09,$7F,$44,$90,$00,$00
 	FCB	$00,$00,$00,$00,$00,$00,$97,$FC,$44,$00,$00,$00,$00
@@ -2744,11 +2744,11 @@ PT1L	FDB	$0D0A!XDMAFIX
 	FCB	$00,$DD,$FF,$88,$AC,$FF,$5C,$CC,$FF,$C8,$46,$99,$00
 	FCB	$00,$00,$0E,$43,$CF,$F4,$88,$FF,$DC,$44,$99,$00,$00
 	FCB	$00,$00,$00,$00,$00,$0E,$68,$84,$44,$90,$00,$00,$00
-*
-*AAFF0E077FCBFF00FF40FF00FF00FF00
-*00FF70580F3F51E814905D111FA40A67
-*
-PT2L	FDB	$0E07!XDMAFIX
+;*
+;*AAFF0E077FCBFF00FF40FF00FF00FF00
+;*00FF70580F3F51E814905D111FA40A67
+;*
+PT2L	FDB	$0E07!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$00,$00,$DF,$F1,$D0,$00,$00,$00,$00,$00,$00,$00,$00,$00
 	FCB	$01,$11,$00,$40,$00,$09,$1F,$F9,$63,$60,$00,$00,$00,$00
 	FCB	$00,$08,$F8,$CE,$00,$0A,$9F,$CF,$F9,$49,$96,$00,$00,$00
@@ -2756,11 +2756,11 @@ PT2L	FDB	$0E07!XDMAFIX
 	FCB	$00,$DE,$00,$E8,$FC,$DA,$89,$E6,$99,$CF,$49,$00,$00,$00
 	FCB	$00,$00,$00,$00,$00,$0E,$88,$6E,$E0,$66,$DD,$49,$00,$00
 	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$09,$4F,$49,$00
-*
-*AAFF0F0B7FC8FF00FF40FF00FF00FF00
-*00FF70580F3F51E814905D111FA40A67
-*
-PT3L	FDB	$0F0B!XDMAFIX
+;*
+;*AAFF0F0B7FC8FF00FF40FF00FF00FF00
+;*00FF70580F3F51E814905D111FA40A67
+;*
+PT3L	FDB	$0F0B!DMAFIX							;;Fixme was: !XDMAFIX
 	FCB	$F8,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 	FCB	$01,$DE,$DF,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 	FCB	$00,$FD,$00,$F0,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
@@ -2772,12 +2772,12 @@ PT3L	FDB	$0F0B!XDMAFIX
 	FCB	$00,$00,$00,$00,$00,$00,$E8,$66,$87,$C4,$60,$00,$00,$00,$00
 	FCB	$00,$00,$00,$00,$00,$00,$00,$00,$7F,$AA,$C4,$99,$00,$00,$00
 	FCB	$00,$00,$00,$00,$00,$00,$00,$0D,$7D,$FF,$AA,$AC,$44,$99,$00
-*
-*	PTERODACTYL DISSOULVE
-*
+;*
+;*	PTERODACTYL DISSOULVE
+;*
 ASH1R
 ASH1L
-* PTERA1
+;* PTERA1
 	FCB	$D0,$1C,$01
 	FCB	$B0,$2C,$14,$01
 	FCB	$C0,$14,$01
@@ -2789,7 +2789,7 @@ ASH1L
 	FCB	$30,$24,$3C,$01
 	FCB	$20,$2C,$01
 	FCB	$24,$5C,$00
-* PTERA2
+;* PTERA2
 	FCB	$D0,$14,$01
 	FCB	$B0,$24,$1E,$01
 	FCB	$C0,$2E,$01
@@ -2801,7 +2801,7 @@ ASH1L
 	FCB	$30,$1E,$2E,$24,$01
 	FCB	$20,$3E,$14,$01
 	FCB	$3E,$24,$24,$00
-* PTERA3
+;* PTERA3
 	FCB	$E0,$01
 	FCB	$B0,$1E,$14,$1E,$01
 	FCB	$C0,$2E,$01
@@ -2813,9 +2813,9 @@ ASH1L
 	FCB	$40,$2E,$1E,$14,$01
 	FCB	$20,$2E,$1E,$01
 	FCB	$1E,$2E,$20,$1E,$14,$00
-*
-LENGTH	EQU	*	CURRENT TOTAL LENGTH OF IMAGES
-	IFGT	*-$3B10
-	 FCB	$1111	OVERFLOW PAST $3B10
+;*
+LENGTH	EQU	*	;CURRENT TOTAL LENGTH OF IMAGES
+	IF *-$3B10 > 0						;;Fixme was: IFGT	*-$3B10
+	 FCB	$1111	;OVERFLOW PAST $3B10
 	ENDIF
-	END	$E000
+	END	;$E000
