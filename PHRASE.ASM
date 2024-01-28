@@ -359,7 +359,7 @@ TXT	FDB	ROMOK
 	FDB	BADJ
 	FDB	SETA
 	FDB	IMES
-	FDB	REST
+	FDB	RESTS								;;Fixme was: REST (duplicate symbol in SYSTEM.ASM)
 	FDB	BKRES
 	FDB	RESHS
 	FDB	HSP
@@ -480,7 +480,7 @@ IMES	FDB	$3080
 	FCB	$22
 	FCB	MSONOF+CEND
 
-REST	FDB	$2180
+RESTS	FDB	$2180								;;Fixme was: REST (duplicate symbol)
 	FCB	$99
 	FCB	MSRFAC+CEND
 

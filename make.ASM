@@ -23,7 +23,7 @@
 	INCLUDE TB12REV3.ASM	;;CMOS and High score routines
 	INCLUDE MESSAGE.ASM	;;Message display routines and phrase strings
 	INCLUDE ATT.ASM		;;Ken Lantz's attract screen
-;	INCLUDE SYSTEM.ASM	
+	INCLUDE SYSTEM.ASM	
 ;	INCLUDE JOUSTRV4.ASM	;;Game program (version 4 - final release)
 	
 	
