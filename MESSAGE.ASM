@@ -1,9 +1,9 @@
 ;	NAM	MESSAGE BLOCK OUTPUT ROUTINES AND DATA
 ;********	NLIST
-	INCLUDE RAMDEF.ASM					;;Fixme was: INCLUDE RAMDEF.SRC
-	INCLUDE EQU.ASM                                         ;;Fixme was: INCLUDE EQU.SRC
-	INCLUDE MESSEQU.ASM                                     ;;Fixme was: INCLUDE MESSEQU.SRC
-	INCLUDE MESSEQU2.ASM                                    ;;Fixme was: INCLUDE MESSEQU2.SRC
+;	INCLUDE RAMDEF.ASM					;;Fixme was: INCLUDE RAMDEF.SRC  (All of these are already in TB12)
+;	INCLUDE EQU.ASM                                         ;;Fixme was: INCLUDE EQU.SRC
+;	INCLUDE MESSEQU.ASM                                     ;;Fixme was: INCLUDE MESSEQU.SRC
+;	INCLUDE MESSEQU2.ASM                                    ;;Fixme was: INCLUDE MESSEQU2.SRC
 ;	LIST
 
 ;*********************************************************
@@ -1176,9 +1176,9 @@ LENGT1	EQU	*-MESS		;ROUTINE & FONT; NUMBER OF BYTES THE MODULE USES
 	INCLUDE PHRASE.ASM							;;Fixme was: INCLUDE PHRASE.SRC
 ;	LIST
 ENDADR	EQU	*		;LAST ABSOLUTE ADDRESS
-LENGTH	EQU	*-MESS		;NUMBER OF BYTES THE MODULE USES
+MESSLEN	EQU	*-MESS		;NUMBER OF BYTES THE MODULE USES		;;Fixme was: LENGTH (symbol already defined)
 ;*
 	IF *-GAMORG > 0		;OVERFLOW INTO NEXT MODULE?			;;Fixme was: IFGT *-GAMORG
 	 FCB	$1111		;OVERFLOWED INTO NEXT MODULE!!
 	ENDIF
-	END	;SYSV
+;	END	;SYSV								;;We don't need this as we're assembling everything in one pass
