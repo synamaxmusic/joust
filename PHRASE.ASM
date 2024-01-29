@@ -354,7 +354,7 @@ TXT	FDB	ROMOK
 	FDB	CMOSDR
 	FDB	COLORTST							;;Fixme was: FDB  COLOR (duplicate symbol)
 	FDB	SWITC
-	FDB	BOOK
+	FDB	BOOKS								;;Fixme was: BOOK (duplicate symbol in T12REV3.ASM)
 	FDB	AJUST
 	FDB	BADJ
 	FDB	SETA
@@ -430,7 +430,7 @@ SWITC	FDB	$3A20
 	FCB	$88
 	FCB	MSSWIT+CEND
 
-BOOK	FDB	$2F10
+BOOKS	FDB	$2F10								;;Fixme was: BOOK
 	FCB	$99
 	FCB	MSBOOK+CEND
 

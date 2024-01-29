@@ -1,0 +1,12 @@
+start /wait p2bin joust.p joust_rom_1b_3006-13.e4 -l 00 -r $0000-$0FFF
+start /wait p2bin joust.p joust_rom_2b_3006-14.c4 -l 00 -r $1000-$1FFF
+start /wait p2bin joust.p joust_rom_3b_3006-15.a4 -l 00 -r $2000-$2FFF
+start /wait p2bin joust.p joust_rom_4b_3006-16.e5 -l 00 -r $3000-$3FFF
+start /wait p2bin joust.p joust_rom_5b_3006-17.c5 -l 00 -r $4000-$4FFF
+start /wait p2bin joust.p joust_rom_6b_3006-18.a5 -l 00 -r $5000-$5FFF
+start /wait p2bin joust.p joust_rom_7b_3006-19.e6 -l 00 -r $6000-$6FFF
+start /wait p2bin joust.p joust_rom_8b_3006-20.c6 -l 00 -r $7000-$7FFF
+start /wait p2bin joust.p joust_rom_9b_3006-21.a6 -l 00 -r $8000-$8FFF
+start /wait p2bin joust.p joust_rom_10b_3006-22.a7 -l 00 -r $D000-$DFFF
+start /wait p2bin joust.p joust_rom_11b_3006-23.c7 -l 00 -r $E000-$EFFF
+start /wait p2bin joust.p joust_rom_12b_3006-24.e7 -l 00 -r $F000-$FFFF
