@@ -24,7 +24,7 @@
 	INCLUDE MESSAGE.ASM	;;Message display routines and phrase strings
 	INCLUDE ATT.ASM		;;Ken Lantz's attract screen
 	INCLUDE SYSTEM.ASM	
-;	INCLUDE JOUSTRV4.ASM	;;Game program (version 4 - final release)
+	INCLUDE JOUSTRV4.ASM	;;Game program (version 4 - final release)
 	
 	
 	END
