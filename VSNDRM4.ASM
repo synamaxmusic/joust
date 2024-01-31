@@ -16,7 +16,7 @@
 ;;
 ;;   asl VSNDRM4.ASM -o vsndrm4.p
 ;;
-;;   p2bin vsndrm4.p vsndrm4.bin -l 00 -r $F000-$FFFF
+;;   p2bin vsndrm4.p video_sound_rom_4_std_780.ic12 -l 00 -r $F000-$FFFF
 ;;
 ;;======================================================================
 ;;  Macro Assembler AS Instructions
@@ -2201,14 +2201,14 @@ ADP 	MACRO 	N						;;Fixme was: ADP MACRO "N
 
 
 LDV 	MACRO 	N						;;Fixme was: LDV MACRO "N
-ZQ0 	SET 	$2000+(N&$FFF)					;;Fixme was: ZQ0 SET $2000+("N!.$FFF)
+ZQ0 	SET 	$2000+((N)&$FFF)				;;Fixme was: ZQ0 SET $2000+("N!.$FFF) (parentheses allow negative values!)
 ; LIST
 	FDB 	ZQ0		;LDV	"N
 ; NLIST
 	ENDM
 ;
 ADV	MACRO	N						;;Fixme was: ADV MACRO "N
-ZQ0 	SET 	$3000+(N&$FFF)					;;Fixme was: ZQ0 SET $3000+("N!.$FFF)
+ZQ0 	SET 	$3000+((N)&$FFF)				;;Fixme was: ZQ0 SET $3000+("N!.$FFF) (parentheses allow negative values!)
 ; LIST
 	FDB 	ZQ0		;ADV	"N
 ; NLIST
@@ -2305,22 +2305,21 @@ ZT	MACRO
 	ENDM
 
 
-;; LT macro doesn't work yet
-LT MACRO C,q0,q1,q2,q3,q4,q5,q6,q7,q8				;;Fixme was: LT MACRO "C,"0,"1,"2,"3,"4,"5,"6,"7,"8
+LT MACRO C,q0,q00,q1,q11,q2,q22,q3,q33,q4,q44,q5,q55,q6,q66,q7,q77,q8,q88	;;Fixme was: LT MACRO "C,"0,"1,"2,"3,"4,"5,"6,"7,"8 (separating all values was the answer!!)
 ZQ1	SET	16
 ZQ2	SET	0
 	IRP I,0,1,2,3,4,5,6,7,8					;;Fixme was: IRPC %I,012345678
 ZB_I	SET	0						;;Fixme was: ZB%I SET 0
 	ENDM							;;Fixme was: ENDR
-	LTA 0,q0						;;Fixme was: LTA 0,"0
-	LTA 1,q1                                                ;;Fixme was: LTA 1,"1
-	LTA 2,q2                                                ;;Fixme was: LTA 2,"2
-	LTA 3,q3                                                ;;Fixme was: LTA 3,"3
-	LTA 4,q4                                                ;;Fixme was: LTA 4,"4
-	LTA 5,q5                                                ;;Fixme was: LTA 5,"5
-	LTA 6,q6                                                ;;Fixme was: LTA 6,"6
-	LTA 7,q7                                                ;;Fixme was: LTA 7,"7
-	LTA 8,q8                                                ;;Fixme was: LTA 8,"8
+	LTA 0,q0,q00						;;Fixme was: LTA 0,"0
+	LTA 1,q1,q11                                            ;;Fixme was: LTA 1,"1
+	LTA 2,q2,q22                                            ;;Fixme was: LTA 2,"2
+	LTA 3,q3,q33                                            ;;Fixme was: LTA 3,"3
+	LTA 4,q4,q44                                            ;;Fixme was: LTA 4,"4
+	LTA 5,q5,q55                                            ;;Fixme was: LTA 5,"5
+	LTA 6,q6,q66                                            ;;Fixme was: LTA 6,"6
+	LTA 7,q7,q77                                            ;;Fixme was: LTA 7,"7
+	LTA 8,q8,q88                                            ;;Fixme was: LTA 8,"8
 ; LIST                                                          
 	FCB	ZQ1,ZQ2		;LT <"0>,<"1>,<"2>,<"3>,<"4>,<"5>,<"6>,<"7>,<"8>
 ; NLIST
@@ -2340,33 +2339,33 @@ ZQ1	SET	17
 	ELSE
 ZQ2 	SET 	ZQ2|(2^(H-1))					;;Fixme was: ZQ2 SET ZQ2!+(2!^("H-1))
 	ENDIF
-ZB_II 	SET 	A+A+ZQ3						;;Fixme was: ZB"I SET "A+"A+ZQ3
+ZB_II 	SET 	(A)+(A)+ZQ3					;;Fixme was: ZB"I SET "A+"A+ZQ3 (parentheses allow negative values!)
 	ENDIF
 	ENDM
 
 
-LT0	MACRO
+LT_0	MACRO							;;Fixme was: LT_0
 ; LIST
 	FCB	ZB_0						;;Fixme was: FCB ZB0
 ; NLIST
 	ENDM
 
 
-LT1	MACRO
+LT_1	MACRO							;;Fixme was: LT_1
 ; LIST
 	FCB	ZB_0,ZB_1					;;Fixme was: FCB ZB0,ZB1
 ; NLIST
 	ENDM
 
 
-LT2	MACRO
+LT_2	MACRO							;;Fixme was: LT_2
 ; LIST
 	FCB	ZB_0,ZB_1,ZB_2					;;Fixme was: FCB ZB0,ZB1,ZB2
 ; NLIST
 	ENDM
 
 
-LT3	MACRO
+LT_3	MACRO							;;Fixme was: LT_3
 ; LIST
 	FCB	ZB_0,ZB_1,ZB_2					;;Fixme was: FCB ZB0,ZB1,ZB2
 	FCB	ZB_3						;;Fixme was: FCB ZB3
@@ -2375,7 +2374,7 @@ LT3	MACRO
 	ENDM
 
 
-LT4	MACRO
+LT_4	MACRO							;;Fixme was: LT_4
 ; LIST
 	FCB	ZB_0,ZB_1,ZB_2					;;Fixme was: FCB ZB0,ZB1,ZB2
 	FCB	ZB_3,ZB_4					;;Fixme was: FCB ZB3,ZB4
@@ -2383,7 +2382,7 @@ LT4	MACRO
 	ENDM
 
 
-LT5	MACRO
+LT_5	MACRO							;;Fixme was: LT_5
 ; LIST
 	FCB	ZB_0,ZB_1,ZB_2					;;Fixme was: FCB ZB0,ZB1,ZB2
 	FCB	ZB_3,ZB_4,ZB_5					;;Fixme was: FCB ZB3,ZB4,ZB5
@@ -2391,7 +2390,7 @@ LT5	MACRO
 	ENDM
 
 
-LT6	MACRO
+LT_6	MACRO							;;Fixme was: LT_6
 ; LIST
 	FCB	ZB_0,ZB_1,ZB_2					;;Fixme was: FCB ZB0,ZB1,ZB2
 	FCB	ZB_3,ZB_4,ZB_5					;;Fixme was: FCB ZB3,ZB4,ZB5
@@ -2400,7 +2399,7 @@ LT6	MACRO
 	ENDM
 
 
-LT7	MACRO
+LT_7	MACRO							;;Fixme was: LT_7
 ; LIST
 	FCB	ZB_0,ZB_1,ZB_2					;;Fixme was: FCB ZB0,ZB1,ZB2
 	FCB	ZB_3,ZB_4,ZB_5					;;Fixme was: FCB ZB3,ZB4,ZB5
@@ -2409,7 +2408,7 @@ LT7	MACRO
 	ENDM
 
 
-LT8	MACRO
+LT_8	MACRO							;;Fixme was: LT_8
 ; LIST
 	FCB	ZB_0,ZB_1,ZB_2					;;Fixme was: FCB ZB0,ZB1,ZB2
 	FCB	ZB_3,ZB_4,ZB_5					;;Fixme was: FCB ZB3,ZB4,ZB5
@@ -2479,103 +2478,103 @@ ODDTBL
 
 ; NLIST
 
- LBL SCREMW,FPF						;;Fixme was: LBL SCREMW,<FPF> (Not sure what "FPF" is)
- FCB	$10,$FF,$02,$02,$02,$02,$02,$02,$02,$02 	;;Fixme was: LT 7,<8,1>,<7,1>,<6,1>,<5,1>,<4,1>,<3,1>,<2,1>,<1,1>
+ LBL SCREMW,FPF					;;Fixme was: LBL SCREMW,<FPF> (Not sure what "FPF" is)
+ LT 7,8,1,7,1,6,1,5,1,4,1,3,1,2,1,1,1           ;;Fixme was: LT 7,<8,1>,<7,1>,<6,1>,<5,1>,<4,1>,<3,1>,<2,1>,<1,1>
  DT 16
  DT 16
- ZT
- FCB	$10,$80,$FE					;;Fixme was: LT 0,<8,-1>
+ ZT   
+ LT 0,8,-1                                      ;;Fixme was: LT 0,<8,-1>
  DT 16
- FCB	$10,$40,$FE					;;Fixme was: LT 0,<7,-1>
+ LT 0,7,-1                                      ;;Fixme was: LT 0,<7,-1>
  DT 16
- FCB	$10,$A0,$00,$FE					;;Fixme was: LT 1,<8,0>,<6,-1>
+ LT 1,8,0,6,-1                                  ;;Fixme was: LT 1,<8,0>,<6,-1>
  DT 16
- FCB	$10,$50,$00,$FE					;;Fixme was: LT 1,<7,0>,<5,-1>
+ LT 1,7,0,5,-1                                  ;;Fixme was: LT 1,<7,0>,<5,-1>
  DT 16
- FCB	$10,$28,$00,$FE					;;Fixme was: LT 1,<6,0>,<4,-1>
+ LT 1,6,0,4,-1                                  ;;Fixme was: LT 1,<6,0>,<4,-1>
  DT 16
- FCB	$10,$14,$00,$FE					;;Fixme was: LT 1,<5,0>,<3,-1>
+ LT 1,5,0,3,-1                                  ;;Fixme was: LT 1,<5,0>,<3,-1>
  DT 16
- FCB	$10,$0A,$00,$FE					;;Fixme was: LT 1,<4,0>,<2,-1>
+ LT 1,4,0,2,-1                                  ;;Fixme was: LT 1,<4,0>,<2,-1>
  DT 16
- FCB	$10,$05,$00,$FE					;;Fixme was: LT 1,<3,0>,<1,-1>
+ LT 1,3,0,1,-1                                  ;;Fixme was: LT 1,<3,0>,<1,-1>
  DT 16
- FCB	$10,$02,$00 					;;Fixme was: LT 0,<2,0>
+ LT 0,2,0                                       ;;Fixme was: LT 0,<2,0>
  DT 16
- FCB	$10,$01,$00					;;Fixme was: LT 0,<1,0>
+ LT 0,1,0                                       ;;Fixme was: LT 0,<1,0>
  DT 16
  TO SCREMW
 
- LBL PPLD
- ADP 1
- ADP -1
- ADP -1
- ADP 1
- STOP
+ LBL PPLD  
+ ADP 1     
+ ADP -1    
+ ADP -1    
+ ADP 1     
+ STOP      
 
  LBL SCREMP
- NOT 60
- LDV $FE00						;;Fixme was:  LDV -512 (Can't use negative decimal values)
- WAIT 16
- LDV 0
- WAIT 100
- LBL SCRMA
- LDV 80
+ NOT 60    
+ LDV -512  
+ WAIT 16   
+ LDV 0     
+ WAIT 100  
+ LBL SCRMA 
+ LDV 80    
  DO 13,PPLD
- LDV 64
- DO 4,PPLD
- STOP
+ LDV 64    
+ DO 4,PPLD 
+ STOP      
 
- LBL SCDNP
- NOT 28
- TO SCRMA
+ LBL SCDNP 
+ NOT 28    
+ TO SCRMA  
 
- LBL SKIDW
- LDH 3,32
- LDH 4,48
- FIN
+ LBL SKIDW 
+ LDH 3,32  
+ LDH 4,48  
+ FIN       
 
- LBL PPVA
- ADP 2
- WAIT 1
- ADP -2
- WAIT 2
- STOP
- 
- LBL SKIDP
- NOT 48
- DO 4,PPVB
- LBL PPVC
- LDV $FFE0						;;Fixme was: LDV -32 (Can't use negative decimal values)
- DO 8,PPVA
- STOP
+ LBL PPVA  
+ ADP 2     
+ WAIT 1    
+ ADP -2    
+ WAIT 2    
+ STOP      
 
- LBL PPVB
- ADV 2
- WAIT 2
- ADP -2
- WAIT 2
- ADP 2
- WAIT 2
- ADP -2
- WAIT 2
- ADP 2
- WAIT 2
- ADP -2
- WAIT 2
- ADP 6
- WAIT 3
- ADV $FF00						;;Fixme was: ADV -256
- WAIT 5
- ADV 256
- ADP 2
- STOP
+ LBL SKIDP 
+ NOT 48    
+ DO 4,PPVB 
+ LBL PPVC  
+ LDV -32   
+ DO 8,PPVA 
+ STOP      
+
+ LBL PPVB  
+ ADV 2     
+ WAIT 2    
+ ADP -2    
+ WAIT 2    
+ ADP 2     
+ WAIT 2    
+ ADP -2    
+ WAIT 2    
+ ADP 2     
+ WAIT 2    
+ ADP -2    
+ WAIT 2    
+ ADP 6     
+ WAIT 3    
+ ADV -256  
+ WAIT 5    
+ ADV 256   
+ ADP 2     
+ STOP      
 
  LBL SKIDEP
- NOT 49
- LDV 6
- DO 1,PPVB
- TO PPVC
+ NOT 49    
+ LDV 6     
+ DO 1,PPVB 
+ TO PPVC   
 
 ; LIST
 
