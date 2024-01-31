@@ -42,6 +42,7 @@ For the first time ever, the source code for the sound ROM is included with the 
 
 ## Important milestones
 
+* 01/30/2024 - After MONTHS of trying to figure out how to get Tim Murphy's Walsh Function Sound Machine macros to work, I finally succeeded in producing the correct binary data that matches up with the sound ROM.  This is huge as this also applies to Sinistar's sound ROM as well.  In layman's terms, this means we can accurately rebuild the data for the "Pterodactyl Scream" and "Ostrich Skid" sound effects ***exactly*** as how it was done in 1982!  
 * 01/29/2024 (Cont'd) - ROM 12 and Video Sound ROM 4 are complete!  The entire game is completely rebuildable now!
 * 01/29/2024 - ROMs 1 through 11 ($0000-$EFFF) for Joust now match up perfectly!  All that remains is the sound rom and Test ROM ($F000).
 * 01/27/2024 - The rewritten code now assembles up to address $5ED0 and matches up perfectly with the first six ROMs for the game.  This includes all the sprite images for every game object, the message display routines, font sprites, and all the strings.   The game program itself is up next and exists entirely in one file that's over 8000 lines of code.  This is going to take a while to rewrite.  It's going to be a bit of a challenge without any pre-existing equates listing but I have a disassembly of the    game to help out.
