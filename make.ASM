@@ -12,6 +12,7 @@
 ;	STARTED PROGRAMMING; FEB 10, 1982
 ;
 ;	Source code rewrite by SynaMax, started 01/25/2024
+;       Complete ROM set built for the first time on 01/29/2024.
 ;
 ;===============================================================================
 ;  Macro Assembler AS Instructions
@@ -26,6 +27,22 @@
 	INCLUDE SYSTEM.ASM	
 	INCLUDE JOUSTRV4.ASM	;;Game program (version 4 - final release)
 	INCLUDE T12REV3.ASM	;;Test Rom
+	
+;===============================================================================
+;  Mods
+;
+;  To enable mods for Joust, simply remove the semi-colon in front of
+;  any define listed below:
+;
+;PauseMod EQU	1
+;
+;  Originally written in 2008 by Chris Brooks @ Coinoplove.com, this allows the
+;  ability to pause the game by hitting the Player 1 button during gameplay.
+;  Very useful, especially if you're playing on hardware!
+;
+;===============================================================================
+	
+	INCLUDE joust_mods.asm
 	
 	
 	END
