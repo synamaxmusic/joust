@@ -42,6 +42,7 @@ For the first time ever, the source code for the sound ROM is included with the 
 
 ## Important milestones
 
+* 06/24/2024 - I recently discovered that back in February, Macro Assembler {AS} version 1.42 Build 262 changed the way it handles 6809 instructions that use an empty first argument on indexed address expressions (i.e. using LDA  X instead of LDA  ,X). This syntax is used extensively throughout the codebase and now results in errors when trying to build the game. A new instruction specific to AS has been inserted in the MAKE.ASM file to fix this issue.
 * 02/08/2024 - The first mod for Joust has been added!  Originally written in 2008 and found on [Coinoplove.com](http://coinoplove.com/romhack/romhack.htm), this is a pause mod that allows the player 1 button to act as a pause button during gameplay.  Thanks to braedel for bringing this cool hack to my attention.  To enable the mod, simply remove the semi-colon in front of the ```PauseMod EQU 1``` define in ```make.ASM```.
 * 01/30/2024 - After MONTHS of trying to figure out how to get Tim Murphy's Walsh Function Sound Machine macros to work, I finally succeeded in producing the correct binary data that matches up with the sound ROM.  This is huge as this also applies to Sinistar's sound ROM as well.  In layman's terms, this means we can accurately rebuild the data for the "Pterodactyl Scream" and "Ostrich Skid" sound effects ***exactly*** as how it was done in 1982!  
 * 01/29/2024 (Cont'd) - ROM 12 and Video Sound ROM 4 are complete!  The entire game is completely rebuildable now!
