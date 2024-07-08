@@ -44,6 +44,18 @@
 ;  ability to pause the game by hitting the Player 1 button during gameplay.
 ;  Very useful, especially if you're playing on hardware!
 ;
+;DisplayLivesMod EQU	1
+;
+;  This is a mod I wrote that takes the hex value for the player's number of
+;  current lives, converts it to BCD using code from the 2014 Tie-Die version of
+;  Robotron, and draws a life number counter on-screen.  This process repeats
+;  every time the life number increments or decrements.
+;
+;  This is one of the most complex mods that I've made so far.  It required having
+;  to disable three separate ZAP routines that Pfutz and Ken Lantz had put in.
+;  I was previously aware of one of them, but only discovered the other two while
+;  while working on this mod.
+;
 ;===============================================================================
 	
 	INCLUDE joust_mods.asm
